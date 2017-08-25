@@ -2,14 +2,13 @@
     <div class="play-core">
         <player-info></player-info>
         <div class="play-disc">            
-            <div class="disc-img" :class="isPlay ? 'isPlay' : ''">
+            <div class="disc-img isPlay" :class="isPlay ? '' : 'isPause'">
                 <img src="./logo.png" alt="" class="channel-logo">
             </div>            
             <div class="disc-bg"></div>
-            <div class="play-stylus" :class="isPlay ? 'isPlay' : ''"></div>
+            <div class="play-stylus isPlay" :class="isPlay ? '' : 'isPause'"></div>
         </div>
-        <player-ctrl></player-ctrl>
-        <div @click="play">暂停</div>
+        <player-ctrl @play="play"></player-ctrl>
     </div>
 </template>
 
@@ -22,14 +21,23 @@ export default {
         PlayerInfo,
         PlayerCtrl
     },
+    mounted() {
+        this.audio = document.getElementById('audio');
+        // setTimeout(() => {
+        //     console.log('------------------------------------');
+        //     console.log(this.audio.paused);
+        //     console.log('------------------------------------');
+        //     this.isPlay = this.audio.paused ? false : true
+        // },1000)
+    },
     data() {
         return {
-            isPlay:false
+            isPlay:true
         }
     },
     methods:{
-        play() {
-            this.isPlay = !this.isPlay
+        play(isPlay) {
+            this.isPlay = isPlay
         }
     }
 }
@@ -64,11 +72,10 @@ export default {
             width 100%
             height 950px
             background url('./disc-icon.png') center center no-repeat
-            &.isPlay
-                -webkit-animation rotate 12s linear infinite
-                -moz-animation rotate 12s linear infinite
-                -o-animation rotate 12s linear infinite
+            &.isPlay               
                 animation rotate 12s linear infinite
+            &.isPause
+                animation-play-state: paused
             .channel-logo
                 position absolute
                 top 0
@@ -95,10 +102,8 @@ export default {
             background url('./stylus-icon.png') center center no-repeat
             background-size cover
             transform-origin 72% 10%
-            transform rotate(-20deg)
             &.isPlay
-                -webkit-animation stylusrotate 12s linear infinite
-                -moz-animation stylusrotate 12s linear infinite
-                -o-animation stylusrotate 12s linear infinite
                 animation stylusrotate 12s linear infinite
+            &.isPause
+                animation-play-state: paused
 </style>

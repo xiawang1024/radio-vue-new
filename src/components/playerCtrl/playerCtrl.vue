@@ -1,6 +1,10 @@
 <template>
     <div class="play-ctrl">
-        <div class="play-pause isPlay"></div>
+        <div 
+            class="play-pause" 
+            :class="isPlay ? 'isPlay' : ''"
+            @click="play">
+        </div>
         <div class="progress"></div>
         <div class="play-volumn"></div>
     </div>
@@ -9,7 +13,35 @@
 import { pad } from 'common/js/util.js'
 export default {
     name: 'play-ctrl',
-    
+    data() {
+        return {
+            isPlay:true
+        }
+    },
+    mounted() {
+        this.audio = document.getElementById('audio');
+        console.log('------------------------------------');
+        console.log(this.audio);
+        console.log('------------------------------------');
+    },
+    methods:{
+        play() {
+            if(this.audio.paused){
+                this._audioPlay()
+            }else{
+                this._audioPause()
+            }
+            this.$emit('play',this.isPlay)
+        },
+        _audioPlay() {
+            this.audio.play()
+            this.isPlay = true;
+        },
+        _audioPause() {
+            this.audio.pause()
+            this.isPlay = false;
+        }
+    }
 }
 </script>
 <style lang="stylus" scoped>

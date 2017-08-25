@@ -1,6 +1,6 @@
 <template>
     <div class="player">
-        <audio src="" id="audio" autoplay style="display:none"></audio>
+        <audio src="http://lhttp.qingting.fm/live/5022452/64k.mp3" id="audio" autoplay style="display:none"></audio>
         <player-header></player-header>
         <player-core></player-core>
     </div>
