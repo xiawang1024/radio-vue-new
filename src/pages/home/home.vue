@@ -1,12 +1,19 @@
 <template>
   <div class="home">
-      首页
+      <header-wx></header-wx>
+      <channel></channel>
   </div>
 </template>
 
 <script>
+import HeaderWx from 'components/header/header'
+import Channel from 'components/channel/channel'
 export default {
     name: 'home',
+    components:{
+        HeaderWx,
+        Channel
+    }
 }
 </script>
 

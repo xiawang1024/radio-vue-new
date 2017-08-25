@@ -12,6 +12,12 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="stylus" scoped>
+@import 'common/stylus/variable.styl'
+#app
+	width 1080px
+	margin 0 auto
+	padding 0 50px
+	box-sizing border-box
+	background $color-background
 </style>
