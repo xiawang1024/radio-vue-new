@@ -2,17 +2,20 @@
   <div class="home">
       <header-wx></header-wx>
       <channel></channel>
+      <news-list></news-list>
   </div>
 </template>
 
 <script>
 import HeaderWx from 'components/header/header'
 import Channel from 'components/channel/channel'
+import NewsList from 'components/newsList/newsList'
 export default {
     name: 'home',
     components:{
         HeaderWx,
-        Channel
+        Channel,
+        NewsList
     }
 }
 </script>

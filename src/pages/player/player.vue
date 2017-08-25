@@ -1,12 +1,16 @@
 <template>
     <div class="player">
-        播放器
+        <player-header></player-header>
     </div>
 </template>
 
 <script>
+import PlayerHeader from 'components/playerHeader/playerHeader'
 export default {
     name:'player',
+    components:{
+        PlayerHeader
+    }
 }
 </script>
 

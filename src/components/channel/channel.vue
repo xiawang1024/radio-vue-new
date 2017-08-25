@@ -40,6 +40,20 @@
                 <h3 class="name">音乐广播</h3>
             </div>
         </div>
+        <div class="row row-3">
+            <div class="item item-09">
+                <img src="./logo/09.png" alt="" class="logo">
+                <h3 class="name">音乐广播</h3>
+            </div>
+            <div class="item item-10">
+                <img src="./logo/10.png" alt="" class="logo">
+                <h3 class="name">音乐广播</h3>
+            </div>
+            <div class="item item-11">
+                <img src="./logo/11.png" alt="" class="logo">
+                <h3 class="name">音乐广播</h3>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -92,6 +106,8 @@ export default {
                         background #e14b39
                     &.item-03
                         background #e25695
+                        .name
+                            margin-top 35px
             .item-04
                 width 100%
                 height 238px
@@ -116,8 +132,48 @@ export default {
                     margin-top 12px
             &.item-06
                 background #0081dc
+                .logo
+                    margin-top 46px
+                .name
+                    margin-top 43px
             &.item-07
                 background #039bae
+                .logo
+                    margin-top 60px
+                .name
+                    margin-top 36px
             &.item-08
                 background #0081dc
+                .logo
+                    margin-top 30px
+                .name
+                    margin-top 12px
+    .row-3
+        margin-top 10px
+        height 238px
+        display flex
+        display flex
+        justify-content space-between
+        .item
+            width 238px
+            text-align center
+            &.item-09
+                background #0081dc
+                .logo
+                    margin-top 57px
+                .name
+                    margin-top 35px
+            &.item-10
+                width 486px
+                background #f5b900
+                .logo
+                    margin-top 50px
+                .name
+                    margin-top 35px
+            &.item-11
+                background #247d00
+                .logo
+                    margin-top 42px
+                .name
+                    margin-top 26px
 </style>
