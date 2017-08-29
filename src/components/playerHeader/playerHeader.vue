@@ -6,12 +6,24 @@
         </span>
         <span class="btn channel-wrap">河南电台</span>
         <span class="btn date-wrap">2017-08-25</span>
+        <div class="picker">
+            <date-picker></date-picker>
+        </div>
     </div>
 </template>
 
 <script>
+import DatePicker from 'components/datePicker/datePicker'
 export default {
     name: 'play-header',
+    components:{
+        DatePicker
+    },
+    data() {
+        return {
+            
+        }
+    }
 }
 </script>
 
@@ -47,5 +59,7 @@ export default {
                 border none
         &.channel-wrap,&.date-wrap
             padding-right 50px
-            background url('./down-icon.png')  right 20px center no-repeat      
+            background url('./down-icon.png')  right 20px center no-repeat  
+    .picker
+        // position relative
 </style>
