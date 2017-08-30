@@ -1,13 +1,20 @@
 <template>
     <header class="header">
         <span class="logo-wrap"></span>
-        <span class="listen-radio-wrap"></span>
+        <span class="listen-radio-wrap" @click="goToPlay"></span>
     </header>
 </template>
 
 <script>
 export default {
-  
+  name:'header',
+  methods:{
+      goToPlay() {
+          this.$router.push({
+              path:'/player'
+          })
+      }
+  }
 }
 </script>
 

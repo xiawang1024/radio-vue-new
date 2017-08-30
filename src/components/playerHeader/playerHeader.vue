@@ -1,6 +1,6 @@
 <template>
     <div class="play-header">
-        <span class="back-icon"></span>
+        <span class="back-icon" @click="goToHome"></span>
         <span class="btn live-wrap isLive">
             <span class="text">听直播</span>
         </span>
@@ -22,6 +22,13 @@ export default {
     data() {
         return {
             
+        }
+    },
+    methods:{
+        goToHome() {
+            this.$router.push({
+                path: '/home'
+            })
         }
     }
 }
