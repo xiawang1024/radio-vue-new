@@ -5,9 +5,9 @@
             <span class="text">听直播</span>
         </span>
         <span class="btn channel-wrap">河南电台</span>
-        <span class="btn date-wrap">2017-08-25</span>
+        <span class="btn date-wrap">{{date}}</span>
         <div class="picker">
-            <date-picker></date-picker>
+            <date-picker @selectDate="selectDate"></date-picker>
         </div>
     </div>
 </template>
@@ -21,15 +21,41 @@ export default {
     },
     data() {
         return {
-            
+            date:null
         }
+    },
+    mounted() {
+        setTimeout(() => {
+            this.date = this._getToDay()
+        },20)
     },
     methods:{
         goToHome() {
             this.$router.push({
                 path: '/home'
             })
-        }
+        },
+        selectDate(date){
+            console.log('------------------------------------');
+            console.log(date);
+            console.log('------------------------------------');
+            this.date = `${date.year}-${this._pad(date.month)}-${this._pad(date.day)}`
+        },
+        _getToDay() {
+            let year = (new Date()).getFullYear();
+            let month = this._pad(new Date().getMonth() + 1);
+            let day = this._pad(new Date().getDate());
+            let today = `${year}-${month}-${day}`
+            return today
+        },
+        _pad(num, n = 2) {
+            let len = num.toString().length
+            while (len < n) {
+                num = '0' + num
+                len++
+            }
+            return num
+        },
     }
 }
 </script>

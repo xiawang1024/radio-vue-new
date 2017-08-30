@@ -76,7 +76,17 @@ export default {
   },
   methods:{
       selectDay(item, index){
-          this.currentDayIndex = index
+          if(item.currentMonth){//当月日期可选
+              this.currentDayIndex = index;
+              let date = {
+                  year:this.year,
+                  month:this.month + 1,
+                  day:item.value
+              }
+              this.$emit('selectDate', date)
+          }else{//非当月日期直接返回
+              return 
+          }      
       },
       prevYear() {
           this.year--
