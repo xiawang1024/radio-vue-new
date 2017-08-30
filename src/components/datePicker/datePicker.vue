@@ -2,14 +2,14 @@
   <div class="date-picker">
       <div class="pick-hd">
           <div class="date-select year-wrap">
-              <span class="prev-icon"></span>
+              <span class="prev-icon" @click="prevYear"></span>
               <span class="year">{{year}}</span>
-              <span class="next-icon"></span>
+              <span class="next-icon" @click="nextYear"></span>
           </div>
           <div class="date-select month-wrap">
-              <span class="prev-icon"></span>
-              <span class="year">{{month}}</span>
-              <span class="next-icon"></span>
+              <span class="prev-icon" @click="prevMonth"></span>
+              <span class="year">{{month + 1}}</span>
+              <span class="next-icon" @click="nextMonth"></span>
           </div>
       </div>
       <div class="pick-data">
@@ -38,7 +38,7 @@ export default {
   data() {
       return {
           week:week,
-          year:2017,
+          year:new Date().getFullYear(),
           month:new Date().getMonth(),
           currentDayIndex:-1,
           isSelectedClass:'isSelected',
@@ -77,6 +77,31 @@ export default {
   methods:{
       selectDay(item, index){
           this.currentDayIndex = index
+      },
+      prevYear() {
+          this.year--
+      },
+      nextYear() {
+          let maxYear = new Date().getFullYear()
+          if(this.year< maxYear){
+              this.year++
+          }else{
+              return
+          }          
+      },
+      prevMonth() {
+          if(this.month >=1){
+              this.month--;
+          }else{
+              this.month = 11
+          }
+      },
+      nextMonth() {
+          if(this.month >=11){
+              this.month = 0;
+          }else{              
+              this.month++;
+          }
       }
   }
 }
@@ -86,9 +111,9 @@ export default {
 .date-picker
     position absolute
     z-index 1024
-    top 200px
-    left 200px
     width 980px
+    left 0
+    top 250px
     .pick-hd
         width 100%
         height 280px

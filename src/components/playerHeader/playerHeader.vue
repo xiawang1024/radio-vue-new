@@ -68,5 +68,5 @@ export default {
             padding-right 50px
             background url('./down-icon.png')  right 20px center no-repeat  
     .picker
-        // position relative
+        // position absolute
 </style>

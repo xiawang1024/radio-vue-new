@@ -19,5 +19,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-
+.player
+    position relative
 </style>
