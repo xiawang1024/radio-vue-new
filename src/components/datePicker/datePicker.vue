@@ -1,5 +1,5 @@
 <template>
-  <div class="date-picker">
+  <div class="date-picker" v-show="isShowDatePicker">
       <div class="pick-hd">
           <div class="date-select year-wrap">
               <span class="prev-icon" @click="prevYear"></span>
@@ -45,6 +45,12 @@ export default {
           noCurrentMonth:'no-current-month'
       }
   },
+  props:{
+      isShowDatePicker:{
+          type:Boolean,
+          default:false
+      }
+  },
   computed: {
       dateList() {
           //获取当月的天数
@@ -83,7 +89,7 @@ export default {
                   month:this.month + 1,
                   day:item.value
               }
-              this.$emit('selectDate', date)
+              this.$emit('selectDate', date)              
           }else{//非当月日期直接返回
               return 
           }      

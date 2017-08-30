@@ -5,9 +5,16 @@
             <span class="text">听直播</span>
         </span>
         <span class="btn channel-wrap">河南电台</span>
-        <span class="btn date-wrap">{{date}}</span>
+        <span 
+            @click="openDate"
+            class="btn date-wrap">
+            {{date}}
+        </span>
         <div class="picker">
-            <date-picker @selectDate="selectDate"></date-picker>
+            <date-picker 
+                :isShowDatePicker="isShowDatePicker"
+                @selectDate="selectDate">
+            </date-picker>
         </div>
     </div>
 </template>
@@ -21,7 +28,8 @@ export default {
     },
     data() {
         return {
-            date:null
+            date:null,//日期
+            isShowDatePicker:false//是否显示日期组件
         }
     },
     mounted() {
@@ -40,6 +48,10 @@ export default {
             console.log(date);
             console.log('------------------------------------');
             this.date = `${date.year}-${this._pad(date.month)}-${this._pad(date.day)}`
+            this.isShowDatePicker = false;
+        },
+        openDate() {
+            this.isShowDatePicker = true
         },
         _getToDay() {
             let year = (new Date()).getFullYear();
