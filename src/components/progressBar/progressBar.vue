@@ -64,7 +64,7 @@ export default {
         },
         format(interval) {
             interval = interval | 0
-            const minute = interval / 60 | 0
+            const minute = pad(interval / 60 | 0)
             const second = pad(interval % 60)
             return `${minute}:${second}`
         },
