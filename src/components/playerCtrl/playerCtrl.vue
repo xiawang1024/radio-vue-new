@@ -5,17 +5,24 @@
             :class="isPlay ? 'isPlay' : ''"
             @click="play">
         </div>
-        <div class="progress"></div>
+        <div class="progress">
+            <progress-bar></progress-bar>
+        </div>
         <div class="play-volumn"></div>
     </div>
 </template>
 <script>
 import { pad } from 'common/js/util.js'
+import ProgressBar from 'components/progressBar/progressBar'
 export default {
     name: 'play-ctrl',
+    components:{
+        ProgressBar
+    },
     data() {
         return {
-            isPlay:true
+            isPlay:true,
+            value: 0
         }
     },
     mounted() {
@@ -63,7 +70,7 @@ export default {
     .progress
         width 570px
         height 115px
-        background url('./progress-icon.png') center center no-repeat
+        // background url('./progress-icon.png') center center no-repeat
     .play-volumn
         width 115px
         height 115px
