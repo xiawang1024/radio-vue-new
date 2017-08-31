@@ -1,32 +1,34 @@
 <template>
-  <div class="date-picker" v-show="isShowDatePicker">
-      <div class="pick-hd">
-          <div class="date-select year-wrap">
-              <span class="prev-icon" @click="prevYear"></span>
-              <span class="year">{{year}}</span>
-              <span class="next-icon" @click="nextYear"></span>
-          </div>
-          <div class="date-select month-wrap">
-              <span class="prev-icon" @click="prevMonth"></span>
-              <span class="year">{{month + 1}}</span>
-              <span class="next-icon" @click="nextMonth"></span>
-          </div>
-      </div>
-      <div class="pick-data">
-          <ul class="pick-week">
-              <li class="list week" v-for="item in week">{{item}}</li>
-          </ul>
-          <ul class="pick-data-list">
-              <li 
-                class="list day" 
-                :class="[ currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? '' :noCurrentMonth ]"
-                v-for="(item, index) in dateList"
-                @click="selectDay(item, index)">
-                {{item.value}}
-              </li>
-          </ul>
-      </div>
-  </div>
+    <transition name="fade">
+    <div class="date-picker" v-show="isShowDatePicker">
+        <div class="pick-hd">
+            <div class="date-select year-wrap">
+                <span class="prev-icon" @click="prevYear"></span>
+                <span class="year">{{year}}</span>
+                <span class="next-icon" @click="nextYear"></span>
+            </div>
+            <div class="date-select month-wrap">
+                <span class="prev-icon" @click="prevMonth"></span>
+                <span class="year">{{month + 1}}</span>
+                <span class="next-icon" @click="nextMonth"></span>
+            </div>
+        </div>
+        <div class="pick-data">
+            <ul class="pick-week">
+                <li class="list week" v-for="item in week">{{item}}</li>
+            </ul>
+            <ul class="pick-data-list">
+                <li 
+                    class="list day" 
+                    :class="[ currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? '' :noCurrentMonth ]"
+                    v-for="(item, index) in dateList"
+                    @click="selectDay(item, index)">
+                    {{item.value}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    </transition>
 </template>
 
 <script>

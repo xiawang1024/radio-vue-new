@@ -1,17 +1,19 @@
 <template>
-    <div class="channel-list" v-show="isShowChannel">
-        <ul class="list-wrap clearfix">
-            <li 
-                class="list"
-                :class="currentIndex == index ? 'isSelected' : ''"
-                @click="selectChannel(item, index)"
-                v-for="(item,index) in channelList">
-                <span class="name">
-                    {{item.name}}
-                </span>
-            </li>
-        </ul>
-    </div>
+    <transition name="fade">
+        <div class="channel-list" v-show="isShowChannel">
+            <ul class="list-wrap clearfix">
+                <li 
+                    class="list"
+                    :class="currentIndex == index ? 'isSelected' : ''"
+                    @click="selectChannel(item, index)"
+                    v-for="(item,index) in channelList">
+                    <span class="name">
+                        {{item.name}}
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </transition>
 </template>
 
 <script>
