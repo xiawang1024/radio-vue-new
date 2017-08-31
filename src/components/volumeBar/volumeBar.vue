@@ -15,11 +15,14 @@ export default {
         vueSlider
     },
     props: {
-       
+       volume:{
+           type:Number,
+           default:0.9
+       }
     },
     data() {
         return {
-            value: 50,
+            value: 80,
             progress: {
                 value: 0,
                 height: 250,
@@ -42,7 +45,9 @@ export default {
         }
     },
     watch: {
-        
+        volume(newVolume) {
+            this.value = this.newVolume * 100
+        }
     },
     computed:{
         isZeroVolume() {
@@ -51,8 +56,8 @@ export default {
     },
     methods: {
         cb(val) {
-            const percent = val / 100;
-            this.$emit('percentChange', percent)
+            const volume = val / 100;
+            this.$emit('volumeChange', volume)
         },
         
     }

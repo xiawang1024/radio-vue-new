@@ -14,7 +14,10 @@
             </progress-bar>
         </div>
         <div class="play-volumn">
-            <volume-bar></volume-bar>
+            <volume-bar
+                @volumeChange="onVolumeChange"
+                :volume="volume">
+            </volume-bar>
         </div>
     </div>
 </template>
@@ -32,18 +35,21 @@ export default {
         return {
             isPlay:true,
             currentTime:0,
-            duration:0
+            duration:0,
+            volume:0
         }
     },
     computed:{
         percent() {
-            // console.log(this.percent)
             return this.currentTime / this.duration;
         }
     },
     mounted() {
         this.audio = document.getElementById('audio');
         this.watchPlayPercent()
+        setTimeout(() => {
+            this.volume = this.audio.volume
+        },20)
     },
     methods:{
         play() {
@@ -64,6 +70,9 @@ export default {
         },
         onPercentChange(percent) {
             this.audio.currentTime = this.duration * percent
+        },
+        onVolumeChange(volume) {
+            this.audio.volume = volume
         },
         //监听播放信息
         watchPlayPercent() {
