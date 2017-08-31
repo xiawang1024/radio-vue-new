@@ -6,30 +6,44 @@
             @click="play">
         </div>
         <div class="progress">
-            <progress-bar></progress-bar>
+            <progress-bar
+                @percentChange="onPercentChange"
+                :currentTime="currentTime"
+                :duration="duration"
+                :percent="percent">
+            </progress-bar>
         </div>
-        <div class="play-volumn"></div>
+        <div class="play-volumn">
+            <volume-bar></volume-bar>
+        </div>
     </div>
 </template>
 <script>
 import { pad } from 'common/js/util.js'
 import ProgressBar from 'components/progressBar/progressBar'
+import VolumeBar from 'components/volumeBar/volumeBar'
 export default {
     name: 'play-ctrl',
     components:{
-        ProgressBar
+        ProgressBar,
+        VolumeBar
     },
     data() {
         return {
             isPlay:true,
-            value: 0
+            currentTime:0,
+            duration:0
+        }
+    },
+    computed:{
+        percent() {
+            // console.log(this.percent)
+            return this.currentTime / this.duration;
         }
     },
     mounted() {
         this.audio = document.getElementById('audio');
-        console.log('------------------------------------');
-        console.log(this.audio);
-        console.log('------------------------------------');
+        this.watchPlayPercent()
     },
     methods:{
         play() {
@@ -47,7 +61,17 @@ export default {
         _audioPause() {
             this.audio.pause()
             this.isPlay = false;
-        }
+        },
+        onPercentChange(percent) {
+            this.audio.currentTime = this.duration * percent
+        },
+        //监听播放信息
+        watchPlayPercent() {
+            this.audio.addEventListener('timeupdate', (e) => {
+                this.currentTime = e.target.currentTime;
+                this.duration = e.target.duration;
+            })  
+        },
     }
 }
 </script>

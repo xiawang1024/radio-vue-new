@@ -1,20 +1,40 @@
 <template>
     <div class="progress-bar">
-        <vue-slider v-bind="progress" v-model="value"></vue-slider>
-        <span class="current-time">00:00</span>
-        <span class="duration">00:00</span>
+        <vue-slider 
+            @callback="cb"
+            v-bind="progress" 
+            v-model="value">
+        </vue-slider>
+        <span class="current-time">{{format(currentTime)}}</span>
+        <span class="duration">{{format(duration)}}</span>
     </div>
 </template>
 
 <script>
 import vueSlider from 'vue-slider-component'
+import { pad } from 'common/js/util.js'
+
 export default {
     components: {
         vueSlider
     },
+    props:{
+        percent: {
+            type: Number,
+            default: 0
+        },
+        currentTime: {
+            type: Number,
+            default: 0
+        },
+        duration: {
+            type: Number,
+            default: 0
+        }
+    },    
     data() {
         return {
-            value:50,
+            value:0,
             progress:{
                 value: 0,
                 height:8,
@@ -31,6 +51,23 @@ export default {
                 }
             }
         }
+    },
+    watch: {
+        percent(newPercent) {
+            this.value = newPercent * 100
+        }
+    },
+    methods:{
+        cb(val) {
+            const percent = val / 100;
+            this.$emit('percentChange', percent)
+        },
+        format(interval) {
+            interval = interval | 0
+            const minute = interval / 60 | 0
+            const second = pad(interval % 60)
+            return `${minute}:${second}`
+        },
     }
 
 }

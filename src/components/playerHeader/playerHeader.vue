@@ -32,6 +32,7 @@
 <script>
 import ChannelList from 'components/channelList/channelList'
 import DatePicker from 'components/datePicker/datePicker'
+import { pad } from 'common/js/util.js'
 export default {
     name: 'play-header',
     components:{
@@ -76,19 +77,11 @@ export default {
         },
         _getToDay() {
             let year = (new Date()).getFullYear();
-            let month = this._pad(new Date().getMonth() + 1);
-            let day = this._pad(new Date().getDate());
+            let month = pad(new Date().getMonth() + 1);
+            let day = pad(new Date().getDate());
             let today = `${year}-${month}-${day}`
             return today
-        },
-        _pad(num, n = 2) {
-            let len = num.toString().length
-            while (len < n) {
-                num = '0' + num
-                len++
-            }
-            return num
-        },
+        }
     }
 }
 </script>
