@@ -96,7 +96,8 @@ export default {
         height 115px
         // background url('./progress-icon.png') center center no-repeat
     .play-volumn
+        position relative
         width 115px
         height 115px
-        background url('./volume-icon.png') center center no-repeat
+        // background url('./volume-icon.png') center center no-repeat
 </style>

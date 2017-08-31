@@ -1,7 +1,8 @@
 <template>
-    <div class="volume-bar">
-        <vue-slider @callback="cb" v-bind="progress" v-model="value">
-        </vue-slider>
+    <div class="volume-bar" :class="isZeroVolume ? 'no-volume-icon' : ''">
+        <div class="bar">
+            <vue-slider class="volume" @callback="cb" v-bind="progress" v-model="value"></vue-slider>
+        </div>
     </div>
 </template>
 
@@ -18,28 +19,35 @@ export default {
     },
     data() {
         return {
-            value: 0,
+            value: 50,
             progress: {
                 value: 0,
-                height: 100,
-                width:8,
-                dotSize: 40,
+                height: 250,
+                width:16,
+                dotSize: 66,
+                interval:10,
                 tooltip: "false",
                 class: 'volume-slider',
                 direction: "vertical",
                 speed: 0.5,
                 processStyle: {
-                    backgroundColor: '#079edd',
-                    boxShadow: "0 0px 10px 6px #1e3476 "
+                    backgroundColor: '#1d8eca',
+                    boxShadow: "0 0px 2px 4px #0e1537 inset"
                 },
                 bgStyle: {
-                    backgroundColor: '#000000'
+                    backgroundColor: '#000000',
+                    boxShadow: "0 0px 0px 4px #333333 inset"
                 }
             }
         }
     },
     watch: {
         
+    },
+    computed:{
+        isZeroVolume() {
+            return this.value == 0 ? true : false
+        }
     },
     methods: {
         cb(val) {
@@ -54,5 +62,25 @@ export default {
 
 <style lang="stylus" scoped>
 .volume-bar
-    background url('./volume-bar.png')
+    position relative
+    z-index 10240
+    width 115px
+    height 115px
+    background url('./volume-icon.png') center center no-repeat
+    background-size 115px 115px
+    &.no-volume-icon
+        background url('./no-volume-icon.png') center center no-repeat
+        background-size 115px 115px
+    .bar
+        position absolute
+        bottom 140px
+        left -14px
+        width 143px
+        height 177px
+        background url('./line.png') center center no-repeat
+        background-size 143px 177px 
+        .volume
+            position relative
+            top -40px
+            left 30px
 </style>
