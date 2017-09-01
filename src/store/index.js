@@ -9,7 +9,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state:{
         channel:{},
-        playBackInfo:{}
+        playBackInfo:{},
+        isLive:true
     },
     actions,
     getters,

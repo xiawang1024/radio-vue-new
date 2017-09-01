@@ -6,6 +6,9 @@ const mutations = {
     },
     [types.SET_PLAYBACKINFO](state, playBackInfo) {
         state.playBackInfo = playBackInfo
+    },
+    [types.SET_ISLIVE](state, isLive) {
+        state.isLive = isLive
     }
 }
 
