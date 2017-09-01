@@ -26,12 +26,16 @@
                 @selectDate="selectDate">
             </date-picker>
         </div>
+        <div class="program">
+            <program-list></program-list>
+        </div>
     </div>
 </template>
 
 <script>
 import ChannelList from 'components/channelList/channelList'
 import DatePicker from 'components/datePicker/datePicker'
+import ProgramList from 'components/programList/programList'
 import { pad } from 'common/js/util.js'
 import Hls from 'hls'
 import { mapActions, mapGetters } from 'vuex'
@@ -39,7 +43,8 @@ export default {
     name: 'play-header',
     components:{
         ChannelList,
-        DatePicker
+        DatePicker,
+        ProgramList
     },
     data() {
         return {
