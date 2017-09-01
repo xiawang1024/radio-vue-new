@@ -51,6 +51,7 @@ export default {
             this.currentIndex = index;
             this.$emit('selectChannel',item)
             this.setPlayBackInfo({})
+            this.isLive(true)
         },
         closeChannel() {
             this.$emit('closeChannelList',false)
@@ -76,7 +77,7 @@ export default {
             }
         },
         ...mapActions([
-            'setChannel', 'setPlayBackInfo'
+            'setChannel', 'setPlayBackInfo', 'isLive'
         ])
     }
 }
@@ -89,7 +90,7 @@ export default {
     z-index 1024
     width 978px
     left 0
-    top 250px
+    top 310px
     background #1f1f21
     color #7c8997
     font-size 38px

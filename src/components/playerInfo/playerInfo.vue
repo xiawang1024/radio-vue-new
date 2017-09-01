@@ -23,7 +23,7 @@ export default {
             return this.playBackInfo.date ? this.playBackInfo.date : this._today()
         },
         liveName() {
-            return this.playBackInfo.title ? this.playBackInfo.title : this.channel.name
+            return this.playBackInfo.title ? this.playBackInfo.title : this.channel.live
         },
         ...mapGetters([
             'channel', 'playBackInfo','isLive'

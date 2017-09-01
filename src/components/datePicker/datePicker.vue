@@ -135,7 +135,7 @@ export default {
     z-index 102400
     width 980px
     left 0
-    top 250px
+    top 310px
     .close-icon
         position absolute
         top -60px

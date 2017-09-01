@@ -18,7 +18,7 @@
                     </span>
                     <span 
                         @click="playBack(item, index)"
-                        v-if="liveIndex == index" 
+                        v-if="liveIndex == index && isToday" 
                         class="playback">
                         LIVE
                     </span>
@@ -67,6 +67,9 @@ export default {
   computed:{
       timeStamp() {
           return this._timeToStamp(`${this.time} 00:00:00.0`)
+      },
+      isToday() {
+          return this.time == today() ? true : false
       }
   },
   watch:{
@@ -84,7 +87,6 @@ export default {
       getProgram(cid, time){
           clickItem(cid, time).then((res) => {
               this.programList = res.data.programs
-             
               setTimeout(() => {
                   this._liveIndex(this.programList)
               },20)
@@ -110,7 +112,7 @@ export default {
             }            
 
         }else{//非今天
-            return false
+            this.isLive(false)
         }
       },
       closeProgram() {
@@ -158,7 +160,7 @@ export default {
     z-index 102400
     width 980px   
     left 0
-    top 250px
+    top 310px
     .close-icon
         position absolute
         top -60px
