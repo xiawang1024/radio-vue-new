@@ -1,6 +1,6 @@
 <template>
     <div class="play-info">
-        <span>正在收听：</span>
+        <span>正在收听：</span>{{isLive}}
         <span class="date">{{today}}</span>
         <span class="channel">{{channel.name}}</span>
         <span class="column">{{liveName}}</span>
@@ -25,7 +25,7 @@ export default {
             return this.playBackInfo.title ? this.playBackInfo.title : this.channel.name
         },
         ...mapGetters([
-            'channel', 'playBackInfo'
+            'channel', 'playBackInfo','isLive'
         ])
     },
     methods:{

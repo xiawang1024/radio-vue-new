@@ -34,3 +34,19 @@ export function pad(num, n = 2) {
   }
   return num
 }
+
+export function today() {
+  let year = (new Date()).getFullYear()
+  let month = pad(new Date().getMonth() + 1)
+  let day = pad(new Date().getDate())
+  return `${year}-${month}-${day}`
+}
+
+export function isInTime(begin, end) {
+  let todayStamp = (new Date()).getTime() / 1000 | 0;//当前时间时间戳
+  if (todayStamp <= end && todayStamp >= begin) {
+    return true
+  }else{
+    return false
+  }
+}
