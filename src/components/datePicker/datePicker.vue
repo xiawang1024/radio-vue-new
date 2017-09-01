@@ -128,7 +128,7 @@ export default {
 <style lang="stylus" scoped>
 .date-picker
     position absolute
-    z-index 1024
+    z-index 102400
     width 980px
     left 0
     top 250px

@@ -66,7 +66,7 @@ export default {
             console.log('------------------------------------');
             console.log(date);
             console.log('------------------------------------');
-            this.date = `${date.year}-${this._pad(date.month)}-${this._pad(date.day)}`
+            this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
             this.isShowDatePicker = false;
         },
         openChannel() {
