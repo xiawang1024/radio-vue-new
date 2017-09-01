@@ -16,6 +16,12 @@
                         class="playback">
                         回听
                     </span>
+                    <span 
+                        @click="playBack(item, index)"
+                        v-if="liveIndex == index" 
+                        class="playback">
+                        LIVE
+                    </span>
                 </span>
               </li>
           </ul>
@@ -26,7 +32,7 @@
 
 <script>
 import { clickItem } from 'api/index'
-import { pad } from 'common/js/util.js'
+import { pad, today, isInTime } from 'common/js/util.js'
 import { mapActions } from 'vuex'
 
 export default {
@@ -34,7 +40,8 @@ export default {
   data() {
       return {
           programList:[],
-          playIndex:0
+          playIndex:0,
+          liveIndex:0
       }
   },
   props:{
@@ -55,7 +62,7 @@ export default {
 
   },
   mounted() {
-      this.getProgram(this.cid, this._timeToStamp(this._getToDay()) )
+    //   this.getProgram(this.cid, this._timeToStamp(this._getToDay()) )
   },
   computed:{
       timeStamp() {
@@ -72,21 +79,52 @@ export default {
   },
   methods:{
       ...mapActions([
-          'setPlayBackInfo'
+          'setPlayBackInfo', 'isLive'
       ]),
       getProgram(cid, time){
           clickItem(cid, time).then((res) => {
               this.programList = res.data.programs
+             
+              setTimeout(() => {
+                  this._liveIndex(this.programList)
+              },20)
           })
       },
-      playBack(program, index) {
-          this.$emit('playBack',program)
+      playBack(program, index) {          
           program.date = this.time
           this.setPlayBackInfo(program)
+          this._isLive(program)
+          this.$emit('playBack', program)
           this.playIndex = index;
+      },
+      _isLive(playBackInfo) {
+        let date = playBackInfo.date
+        let begin = playBackInfo.beginTime
+        let end = playBackInfo.endTime
+        if(date == today()){//是今天
+            //是当前时间段，是直播
+            if(isInTime(begin, end)){
+                this.isLive(true)
+            } else {//否当前时间段，回听
+                this.isLive(false)
+            }            
+
+        }else{//非今天
+            return false
+        }
       },
       closeProgram() {
           this.$emit('closeProgramList',false)
+      },
+      _liveIndex(programs) {
+          let currentTime = (new Date()).getTime() / 1000 | 0;//当前时间时间戳
+          for (let i = 0; i < programs.length; i++) {
+              var item = programs[i];
+              if (currentTime <= item.endTime && currentTime >= item.beginTime) {
+                  this.liveIndex = i;
+                  return
+              }
+          }
       },
       //时间转时间戳
       _timeToStamp(date) {

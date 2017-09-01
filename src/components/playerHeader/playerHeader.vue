@@ -7,7 +7,7 @@
         <span 
             @click="openChannel"
             class="btn channel-wrap">
-            {{channel}}
+            {{channel.name}}
         </span>
         <span 
             @click="openDate"
@@ -56,7 +56,7 @@ export default {
     },
     data() {
         return {
-            channel:'新闻广播',//频率
+            // channel:'新闻广播',//频率
             isShowChannel:false,//是否显示频率组件
             date:null,//日期
             isShowDatePicker:false,//是否显示日期组件
@@ -65,11 +65,12 @@ export default {
         }
     },
     computed:{
-       
+       ...mapGetters([
+           'isLive', 'channel'
+       ])
     },
     mounted() {
         this.audio = document.getElementById('audio')
-        console.log(this.audio)
         setTimeout(() => {
             this.date = this._getToDay()
         },20)
@@ -83,24 +84,27 @@ export default {
         selectChannel(channel) {            
             this.setChannel(channel)
             this._playHlsSrc(channel.streams[0])
-            this.channel = `${channel.name}`
             this.isShowChannel = false;   
             this.cid = parseInt(channel.cid); 
             this.date = this._getToDay()       
         },
         selectDate(date){
-            console.log('------------------------------------');
-            console.log(date);
-            console.log('------------------------------------');
             this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
             this.isShowDatePicker = false;
             this.openProgram()
         },
         playBack(program){
-            console.log('------------------------------------');
-            console.log(program);
-            console.log('------------------------------------');
-            this._playHlsSrc(program.playUrl[0])
+            let liveStream = this.channel.streams[0];
+            if(this.isLive){                
+                //直播...
+                setTimeout(() => {
+                    this._playHlsSrc(liveStream)
+                },20)
+            }else{                
+                //点播...
+                this._playHlsSrc(program.playUrl[0])
+            }
+            
         },
         openChannel() {
             this.isShowChannel = true;

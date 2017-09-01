@@ -40,9 +40,6 @@ export default {
         getClassItem(1).then((res) => {
             this.channelList = res.data
             this.setChannel(this.channelList[0])
-            console.log('------------------------------------');
-            console.log(this.channelList[0]);
-            console.log('------------------------------------');
             this._playHlsSrc(this.channelList[0].streams[0])
         })
     },
