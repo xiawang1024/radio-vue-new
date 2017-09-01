@@ -27,6 +27,7 @@
                 </li>
             </ul>
         </div>
+        <span class="close-icon" @click="closeDatePick">X</span>
     </div>
     </transition>
 </template>
@@ -120,6 +121,9 @@ export default {
           }else{              
               this.month++;
           }
+      },
+      closeDatePick() {
+          this.$emit('closeDatePick', false)
       }
   }
 }
@@ -128,10 +132,22 @@ export default {
 <style lang="stylus" scoped>
 .date-picker
     position absolute
-    z-index 1024
+    z-index 102400
     width 980px
     left 0
     top 250px
+    .close-icon
+        position absolute
+        top -60px
+        right 0
+        display inline-block
+        width 60px
+        height 60px
+        line-height 60px
+        text-align center
+        background #454647
+        font-size 40px
+        color #999
     .pick-hd
         width 100%
         height 280px

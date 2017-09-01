@@ -12,6 +12,7 @@
                     </span>
                 </li>
             </ul>
+            <span class="close-icon" @click="closeChannel">X</span>
         </div>
     </transition>
 </template>
@@ -52,6 +53,10 @@ export default {
         selectChannel(item, index) {
             this.currentIndex = index;
             this.$emit('selectChannel',item)
+            this.setPlayBackInfo({})
+        },
+        closeChannel() {
+            this.$emit('closeChannelList',false)
         },
         //判断是否是m3u8,地市台换用蜻蜓直播流mp3
         _isM3u8(stream) {
@@ -74,7 +79,7 @@ export default {
             }
         },
         ...mapActions([
-            'setChannel'
+            'setChannel', 'setPlayBackInfo'
         ])
     }
 }
@@ -91,6 +96,18 @@ export default {
     background #1f1f21
     color #7c8997
     font-size 38px
+    .close-icon
+        position absolute
+        top -60px
+        right 0
+        display inline-block
+        width 60px
+        height 60px
+        line-height 60px
+        text-align center
+        background #454647
+        font-size 40px
+        color #999
     .list-wrap
         width 100%
         box-sizing border-box

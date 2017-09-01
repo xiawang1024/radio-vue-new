@@ -16,19 +16,25 @@
         </span>
         <div class="chanel">
             <channel-list 
+                @closeChannelList="closeChannelList"
                 @selectChannel="selectChannel"
                 :isShowChannel="isShowChannel">
             </channel-list>
         </div>
         <div class="picker">
             <date-picker 
+                @closeDatePick="closeDatePick"
                 :isShowDatePicker="isShowDatePicker"
                 @selectDate="selectDate">
             </date-picker>
         </div>
         <div class="program">
             <program-list
-            @playBack="playBack">                
+                :isShowProgram="isShowProgram"
+                :cid="cid"
+                :time="date"
+                @closeProgramList="closeProgramList"
+                @playBack="playBack">                
             </program-list>
         </div>
     </div>
@@ -53,8 +59,13 @@ export default {
             channel:'新闻广播',//频率
             isShowChannel:false,//是否显示频率组件
             date:null,//日期
-            isShowDatePicker:false//是否显示日期组件
+            isShowDatePicker:false,//是否显示日期组件
+            isShowProgram:false,//是否显示节目列表组件
+            cid:1,//频率cid
         }
+    },
+    computed:{
+       
     },
     mounted() {
         this.audio = document.getElementById('audio')
@@ -73,7 +84,9 @@ export default {
             this.setChannel(channel)
             this._playHlsSrc(channel.streams[0])
             this.channel = `${channel.name}`
-            this.isShowChannel = false;            
+            this.isShowChannel = false;   
+            this.cid = parseInt(channel.cid); 
+            this.date = this._getToDay()       
         },
         selectDate(date){
             console.log('------------------------------------');
@@ -81,6 +94,7 @@ export default {
             console.log('------------------------------------');
             this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
             this.isShowDatePicker = false;
+            this.openProgram()
         },
         playBack(program){
             console.log('------------------------------------');
@@ -93,6 +107,18 @@ export default {
         },
         openDate() {
             this.isShowDatePicker = true
+        },
+        openProgram() {
+            this.isShowProgram = true
+        },
+        closeChannelList() {
+            this.isShowChannel = false
+        },
+        closeDatePick() {
+            this.isShowDatePicker = false
+        },
+        closeProgramList() {
+            this.isShowProgram = false
         },
         _getToDay() {
             let year = (new Date()).getFullYear();

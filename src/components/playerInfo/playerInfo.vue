@@ -1,9 +1,9 @@
 <template>
     <div class="play-info">
-        <span>正在收听</span>
+        <span>正在收听：</span>
         <span class="date">{{today}}</span>
         <span class="channel">{{channel.name}}</span>
-        <span class="column">{{channel.live}}</span>
+        <span class="column">{{liveName}}</span>
     </div>
 </template>
 <script>
@@ -19,10 +19,13 @@ export default {
     },
     computed:{
         today() {
-            return this.date ? this.date : this._today()
+            return this.playBackInfo.date ? this.playBackInfo.date : this._today()
+        },
+        liveName() {
+            return this.playBackInfo.title ? this.playBackInfo.title : this.channel.name
         },
         ...mapGetters([
-            'channel'
+            'channel', 'playBackInfo'
         ])
     },
     methods:{

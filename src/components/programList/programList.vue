@@ -1,8 +1,8 @@
 <template>
   <transition name="fade">
-      <div class="program-list">
+      <div class="program-list" v-show="isShowProgram">
           <ul class="list-wrap">
-              <li class="list" v-for="(item, index) in programList" :class="playIndex == index ? '' : ''">
+              <li class="list" v-for="(item, index) in programList" :class="playIndex == index ? 'isPlay' : ''">
                 <span class="time">
                     {{format(item.beginTime)}} - {{format(item.endTime)}}
                 </span>
@@ -19,7 +19,7 @@
                 </span>
               </li>
           </ul>
-          <span class="close-icon">X</span>
+          <span class="close-icon" @click="closeProgram">X</span>
       </div>
   </transition>
 </template>
@@ -27,6 +27,7 @@
 <script>
 import { clickItem } from 'api/index'
 import { pad } from 'common/js/util.js'
+import { mapActions } from 'vuex'
 
 export default {
   name:'program-list',
@@ -44,6 +45,10 @@ export default {
       time:{
           type:String,
           default:''
+      },
+      isShowProgram:{
+          type:Boolean,
+          default:false
       }
   },
   created() {
@@ -52,17 +57,36 @@ export default {
   mounted() {
       this.getProgram(this.cid, this._timeToStamp(this._getToDay()) )
   },
+  computed:{
+      timeStamp() {
+          return this._timeToStamp(`${this.time} 00:00:00.0`)
+      }
+  },
+  watch:{
+      cid(newCid) {
+          this.getProgram(newCid, this.timeStamp)
+      },
+      timeStamp(newTimeStamp) {
+          this.getProgram(this.cid, newTimeStamp)
+      }
+  },
   methods:{
+      ...mapActions([
+          'setPlayBackInfo'
+      ]),
       getProgram(cid, time){
           clickItem(cid, time).then((res) => {
-              console.log('------------------------------------');
-              console.log(res);
-              console.log('------------------------------------');
               this.programList = res.data.programs
           })
       },
       playBack(program, index) {
           this.$emit('playBack',program)
+          program.date = this.time
+          this.setPlayBackInfo(program)
+          this.playIndex = index;
+      },
+      closeProgram() {
+          this.$emit('closeProgramList',false)
       },
       //时间转时间戳
       _timeToStamp(date) {
