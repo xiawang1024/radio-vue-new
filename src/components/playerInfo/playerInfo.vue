@@ -1,6 +1,7 @@
 <template>
     <div class="play-info">
-        <span>正在收听：</span>{{isLive}}
+        <span class="type" v-if="isLive">直播：</span>
+        <span class="type" v-else>回听：</span>
         <span class="date">{{today}}</span>
         <span class="channel">{{channel.name}}</span>
         <span class="column">{{liveName}}</span>
@@ -47,4 +48,11 @@ export default {
     color $color-grey
     span 
         margin 0 6px
+        &.type
+            display inline-block
+            background #0081dc
+            color #ffffff
+            padding 8px 12px
+            border-radius 4px
+
 </style>
