@@ -8,7 +8,7 @@
     </div>
 </template>
 <script>
-import { pad } from 'common/js/util.js'
+import { pad, today } from 'common/js/util.js'
 import { mapGetters } from 'vuex'
 export default {
     name:'play-info',
@@ -20,7 +20,7 @@ export default {
     },
     computed:{
         today() {
-            return this.playBackInfo.date ? this.playBackInfo.date : this._today()
+            return this.playBackInfo.date ? this.playBackInfo.date : today()
         },
         liveName() {
             return this.playBackInfo.title ? this.playBackInfo.title : this.channel.live
@@ -30,12 +30,7 @@ export default {
         ])
     },
     methods:{
-        _today() {
-            let year = (new Date()).getFullYear()
-            let month = pad(new Date().getMonth() + 1)
-            let day = pad(new Date().getDate())
-            return `${year}-${month}-${day}`
-        },
+       
     }
 }
 </script>
