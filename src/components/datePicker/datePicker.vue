@@ -20,7 +20,7 @@
             <ul class="pick-data-list">
                 <li 
                     class="list day" 
-                    :class="[ currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? '' :noCurrentMonth ]"
+                    :class="[ item.currentMonth && currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? '' :noCurrentMonth ]"
                     v-for="(item, index) in dateList"
                     @click="selectDay(item, index)">
                     {{item.value}}
