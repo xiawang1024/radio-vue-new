@@ -2,7 +2,7 @@
   <transition name="fade">
       <div class="program-list">
           <ul class="list-wrap">
-              <li class="list" v-for="item in programList">
+              <li class="list" v-for="(item, index) in programList" :class="playIndex == index ? '' : ''">
                 <span class="time">
                     {{format(item.beginTime)}} - {{format(item.endTime)}}
                 </span>
@@ -10,7 +10,12 @@
                     {{item.title}}
                 </span>
                 <span class="isPlayBack">
-                    <span v-show="item.playUrl && item.playUrl.length > 0" class="playback">回听</span>
+                    <span 
+                        @click="playBack(item, index)"
+                        v-show="item.playUrl && item.playUrl.length > 0" 
+                        class="playback">
+                        回听
+                    </span>
                 </span>
               </li>
           </ul>
@@ -27,7 +32,8 @@ export default {
   name:'program-list',
   data() {
       return {
-          programList:[]
+          programList:[],
+          playIndex:0
       }
   },
   props:{
@@ -54,6 +60,9 @@ export default {
               console.log('------------------------------------');
               this.programList = res.data.programs
           })
+      },
+      playBack(program, index) {
+          this.$emit('playBack',program)
       },
       //时间转时间戳
       _timeToStamp(date) {
@@ -114,6 +123,9 @@ export default {
             display flex
             align-items center
             border-bottom 1px solid #666
+            &.isPlay
+                background #0081dc
+                color #ffffff
             span
                 flex 1
                 text-align center

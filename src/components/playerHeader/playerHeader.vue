@@ -27,7 +27,9 @@
             </date-picker>
         </div>
         <div class="program">
-            <program-list></program-list>
+            <program-list
+            @playBack="playBack">                
+            </program-list>
         </div>
     </div>
 </template>
@@ -67,10 +69,7 @@ export default {
                 path: '/home'
             })
         },
-        selectChannel(channel) {
-            console.log('------------------------------------');
-            console.log(channel);
-            console.log('------------------------------------');
+        selectChannel(channel) {            
             this.setChannel(channel)
             this._playHlsSrc(channel.streams[0])
             this.channel = `${channel.name}`
@@ -82,6 +81,12 @@ export default {
             console.log('------------------------------------');
             this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
             this.isShowDatePicker = false;
+        },
+        playBack(program){
+            console.log('------------------------------------');
+            console.log(program);
+            console.log('------------------------------------');
+            this._playHlsSrc(program.playUrl[0])
         },
         openChannel() {
             this.isShowChannel = true;
