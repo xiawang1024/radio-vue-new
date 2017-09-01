@@ -3,16 +3,21 @@
         <vue-slider 
             @callback="cb"
             v-bind="progress" 
+            :disabled="isLive"
             v-model="value">
         </vue-slider>
-        <span class="current-time">{{format(currentTime)}}</span>
-        <span class="duration">{{format(duration)}}</span>
+        <div v-if="!isLive">
+            <span class="current-time">{{format(currentTime)}}</span>
+            <span class="duration">{{format(duration)}}</span>
+        </div>
+        <div v-else class="islive">直播中...</div>
     </div>
 </template>
 
 <script>
 import vueSlider from 'vue-slider-component'
 import { pad } from 'common/js/util.js'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -54,8 +59,17 @@ export default {
     },
     watch: {
         percent(newPercent) {
-            this.value = newPercent * 100
+            if(this.isLive){
+                this.value = 60
+            }else{
+                this.value = newPercent * 100
+            }
         }
+    },
+    computed:{
+        ...mapGetters([
+            'isLive'
+        ])
     },
     methods:{
         cb(val) {
@@ -87,4 +101,7 @@ export default {
         right 0
         font-size 26px
         color #7c8997
+    .islive
+        color #7c8997
+        font-size 20px
 </style>
