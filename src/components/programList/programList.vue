@@ -12,15 +12,16 @@
                 <span class="isPlayBack">
                     <span 
                         @click="playBack(item, index)"
-                        v-show="item.playUrl && item.playUrl.length > 0" 
-                        class="playback">
-                        回听
-                    </span>
-                    <span 
-                        @click="playBack(item, index)"
                         v-if="liveIndex == index && isToday" 
                         class="playback">
                         LIVE
+                    </span>
+                    <span 
+                        v-else
+                        @click="playBack(item, index)"
+                        v-show="item.playUrl && item.playUrl.length > 0" 
+                        class="playback">
+                        回听
                     </span>
                 </span>
               </li>
