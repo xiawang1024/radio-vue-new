@@ -1,6 +1,5 @@
 <template>
     <div class="player">
-        <audio src="http://192.168.9.16:5000/test1.mp3" id="audio" autoplay style="display:none"></audio>
         <player-header></player-header>
         <player-core></player-core>
         <player-footer></player-footer>

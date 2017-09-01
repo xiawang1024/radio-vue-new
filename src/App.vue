@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <audio src="http://192.168.9.16:5000/test1.mp3" id="audio" autoplay style="display:none"></audio>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>

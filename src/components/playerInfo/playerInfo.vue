@@ -2,32 +2,28 @@
     <div class="play-info">
         <span>正在收听</span>
         <span class="date">{{today}}</span>
-        <span class="channel">{{channel}}</span>
-        <span class="column">{{column}}</span>
+        <span class="channel">{{channel.name}}</span>
+        <span class="column">{{channel.live}}</span>
     </div>
 </template>
 <script>
 import { pad } from 'common/js/util.js'
+import { mapGetters } from 'vuex'
 export default {
     name:'play-info',
     props:{
         date:{
             type:String,
             default:''
-        },
-        channel:{
-            type:String,
-            default:'新闻广播'
-        },
-        column:{
-            type:String,
-            default:'豫广新闻'
         }
     },
     computed:{
         today() {
             return this.date ? this.date : this._today()
-        }
+        },
+        ...mapGetters([
+            'channel'
+        ])
     },
     methods:{
         _today() {

@@ -3,7 +3,7 @@
         <player-info></player-info>
         <div class="play-disc">            
             <div class="disc-img isPlay" :class="isPlay ? '' : 'isPause'">
-                <img src="./logo.png" alt="" class="channel-logo">
+                <img :src="logoUrl" alt="" class="channel-logo">
             </div>            
             <div class="disc-bg"></div>
             <div class="play-stylus isPlay" :class="isPlay ? '' : 'isPause'"></div>
@@ -15,6 +15,8 @@
 <script>
 import PlayerInfo from 'components/playerInfo/playerInfo'
 import PlayerCtrl from 'components/playerCtrl/playerCtrl'
+import { mapGetters } from 'vuex'
+
 export default {
     name: 'play-core',
     components:{
@@ -29,6 +31,14 @@ export default {
         //     console.log('------------------------------------');
         //     this.isPlay = this.audio.paused ? false : true
         // },1000)
+    },
+    computed: {
+        ...mapGetters([
+            'channel'
+        ]),
+        logoUrl() {
+            return 'http://program.hndt.com' + this.channel.image
+        }
     },
     data() {
         return {

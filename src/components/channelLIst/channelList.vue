@@ -18,6 +18,9 @@
 
 <script>
 import { getClassItem } from 'api/index'
+import { mapActions } from 'vuex'
+import Hls from 'hls'
+
 export default {
     name:'channel-list',
     data () {
@@ -35,13 +38,44 @@ export default {
     created() {
         getClassItem(1).then((res) => {
             this.channelList = res.data
+            this.setChannel(this.channelList[0])
+            console.log('------------------------------------');
+            console.log(this.channelList[0]);
+            console.log('------------------------------------');
+            this._playHlsSrc(this.channelList[0].streams[0])
         })
+    },
+    mounted() {
+        this.audio = document.getElementById('audio')
     },
     methods: {
         selectChannel(item, index) {
             this.currentIndex = index;
             this.$emit('selectChannel',item)
-        }
+        },
+        //判断是否是m3u8,地市台换用蜻蜓直播流mp3
+        _isM3u8(stream) {
+            let patt = /m3u8$/;
+            return patt.test(stream);
+        },
+        _playHlsSrc(stream) {
+            if (this._isM3u8(stream)) {
+                if (Hls.isSupported()) {
+                    this.hls = new Hls();
+                    this.hls.loadSource(stream);
+                    this.hls.attachMedia(this.audio);
+                    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        this.audio.play();
+                        this.isPlay = true
+                    });
+                }
+            } else {
+                this.audio.setAttribute('src', stream)
+            }
+        },
+        ...mapActions([
+            'setChannel'
+        ])
     }
 }
 </script>

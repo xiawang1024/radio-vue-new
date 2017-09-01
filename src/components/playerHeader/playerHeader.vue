@@ -33,6 +33,8 @@
 import ChannelList from 'components/channelList/channelList'
 import DatePicker from 'components/datePicker/datePicker'
 import { pad } from 'common/js/util.js'
+import Hls from 'hls'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     name: 'play-header',
     components:{
@@ -48,6 +50,8 @@ export default {
         }
     },
     mounted() {
+        this.audio = document.getElementById('audio')
+        console.log(this.audio)
         setTimeout(() => {
             this.date = this._getToDay()
         },20)
@@ -59,8 +63,13 @@ export default {
             })
         },
         selectChannel(channel) {
+            console.log('------------------------------------');
+            console.log(channel);
+            console.log('------------------------------------');
+            this.setChannel(channel)
+            this._playHlsSrc(channel.streams[0])
             this.channel = `${channel.name}`
-            this.isShowChannel = false;
+            this.isShowChannel = false;            
         },
         selectDate(date){
             console.log('------------------------------------');
@@ -81,7 +90,30 @@ export default {
             let day = pad(new Date().getDate());
             let today = `${year}-${month}-${day}`
             return today
-        }
+        },
+        //判断是否是m3u8,地市台换用蜻蜓直播流mp3
+        _isM3u8(stream) {
+            let patt = /m3u8$/;
+            return patt.test(stream);
+        },
+        _playHlsSrc(stream) {
+            if (this._isM3u8(stream)) {
+                if (Hls.isSupported()) {
+                    this.hls = new Hls();
+                    this.hls.loadSource(stream);
+                    this.hls.attachMedia(this.audio);
+                    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        this.audio.play();
+                        this.isPlay = true
+                    });
+                }
+            } else {
+                this.audio.setAttribute('src', stream)
+            }
+        },
+        ...mapActions([
+            'setChannel'
+        ]),
     }
 }
 </script>
