@@ -83,7 +83,7 @@ export default {
   },
   methods:{
       ...mapActions([
-          'setPlayBackInfo', 'isLive'
+          'setPlayBackInfo', 'isLive', 'setIsPlay'
       ]),
       getProgram(cid, time){
           clickItem(cid, time).then((res) => {
@@ -98,6 +98,7 @@ export default {
           this.setPlayBackInfo(program)
           this._isLive(program)
           this.$emit('playBack', program)
+          this.setIsPlay(true)
           this.playIndex = index;
       },
       _isLive(playBackInfo) {
