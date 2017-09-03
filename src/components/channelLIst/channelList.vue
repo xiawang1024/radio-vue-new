@@ -52,6 +52,7 @@ export default {
             this.$emit('selectChannel',item)
             this.setPlayBackInfo({})
             this.isLive(true)
+            this.setIsPlay(true)
         },
         closeChannel() {
             this.$emit('closeChannelList',false)
@@ -77,7 +78,7 @@ export default {
             }
         },
         ...mapActions([
-            'setChannel', 'setPlayBackInfo', 'isLive'
+            'setChannel', 'setPlayBackInfo', 'isLive', 'setIsPlay'
         ])
     }
 }

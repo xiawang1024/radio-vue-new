@@ -8,7 +8,7 @@
             <div class="disc-bg"></div>
             <div class="play-stylus isPlay" :class="isPlay ? '' : 'isPause'"></div>
         </div>
-        <player-ctrl @play="play"></player-ctrl>
+        <player-ctrl></player-ctrl>
     </div>
 </template>
 
@@ -29,20 +29,10 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'channel'
+            'channel','isPlay'
         ]),
         logoUrl() {
             return 'http://program.hndt.com' + this.channel.image
-        }
-    },
-    data() {
-        return {
-            isPlay:true
-        }
-    },
-    methods:{
-        play(isPlay) {
-            this.isPlay = isPlay
         }
     }
 }
