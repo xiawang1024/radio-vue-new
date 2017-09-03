@@ -25,12 +25,7 @@ export default {
     },
     mounted() {
         this.audio = document.getElementById('audio');
-        // setTimeout(() => {
-        //     console.log('------------------------------------');
-        //     console.log(this.audio.paused);
-        //     console.log('------------------------------------');
-        //     this.isPlay = this.audio.paused ? false : true
-        // },1000)
+       
     },
     computed: {
         ...mapGetters([
