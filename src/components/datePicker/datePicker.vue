@@ -57,15 +57,15 @@ export default {
       },
       year:{
           type:Number,
-          default: new Date().getFullYear()
+          default: (new Date()).getFullYear()
       },
       month:{
           type: Number,
-          default: new Date().getMonth()
+          default: (new Date()).getMonth()
       },
       day:{
           type: Number,
-          default: new Date().getDate()
+          default: (new Date()).getDate()
       }
   },
   computed: {

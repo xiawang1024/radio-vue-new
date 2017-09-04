@@ -51,7 +51,7 @@
 import ChannelList from 'components/channelList/channelList'
 import DatePicker from 'components/datePicker/datePicker'
 import ProgramList from 'components/programList/programList'
-import { pad } from 'common/js/util.js'
+import { pad,today } from 'common/js/util.js'
 import Hls from 'hls'
 import { mapActions, mapGetters } from 'vuex'
 export default {
@@ -63,7 +63,6 @@ export default {
     },
     data() {
         return {
-            // channel:'新闻广播',//频率
             isShowChannel:false,//是否显示频率组件
             date:null,//日期
             isShowDatePicker:false,//是否显示日期组件
@@ -82,7 +81,7 @@ export default {
     mounted() {
         this.audio = document.getElementById('audio')
         setTimeout(() => {
-            this.date = this._getToDay()
+            this.date = today()
         },20)
     },
     methods:{
@@ -94,6 +93,7 @@ export default {
             this.isShowChannel = false;
             this.isShowDatePicker = false;
             this.isShowProgram = false;
+            this.setDate(today())
         },
         goToHome() {
             this.$router.push({
@@ -105,8 +105,8 @@ export default {
             this._playHlsSrc(channel.streams[0])
             this.isShowChannel = false;   
             this.cid = parseInt(channel.cid); 
-            this.date = this._getToDay()   
-            this.setDate(this.date)    
+            this.date = today()
+            this.setDate(today)  
         },
         selectDate(date){
             this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
@@ -123,7 +123,6 @@ export default {
             }else{                
                 //点播...
                 this._playHlsSrc(program.playUrl[0])
-                this.setDate(this.playBackInfo.date)
             }            
         },
         //设置日期
@@ -151,19 +150,17 @@ export default {
         closeChannelList() {
             this.isShowChannel = false
         },
-        closeDatePick() {
+        closeDatePick() {            
             this.isShowDatePicker = false
-            this.setDate(this.playBackInfo.date)
+            let date = this.playBackInfo.date || today()
+            this.date = date
+            this.setDate(date)
         },
         closeProgramList() {
             this.isShowProgram = false
-        },
-        _getToDay() {
-            let year = (new Date()).getFullYear();
-            let month = pad(new Date().getMonth() + 1);
-            let day = pad(new Date().getDate());
-            let today = `${year}-${month}-${day}`
-            return today
+            let date = this.playBackInfo.date || today()
+            this.date = date
+            this.setDate(date)
         },
         //判断是否是m3u8,地市台换用蜻蜓直播流mp3
         _isM3u8(stream) {

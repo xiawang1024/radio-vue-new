@@ -2,7 +2,7 @@
   <transition name="fade">
       <div class="program-list" v-show="isShowProgram">
           <ul class="list-wrap">
-              <li class="list" v-for="(item, index) in programList" :class="playIndex == index ? 'isPlay' : ''">
+              <li class="list" v-for="(item, index) in programList" :class="playIndex == index ? 'isPlay' : ''" >
                 <span class="time">
                     {{format(item.beginTime)}} - {{format(item.endTime)}}
                 </span>
@@ -34,7 +34,7 @@
 <script>
 import { clickItem } from 'api/index'
 import { pad, today, isInTime } from 'common/js/util.js'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name:'program-list',
@@ -63,7 +63,6 @@ export default {
 
   },
   mounted() {
-    //   this.getProgram(this.cid, this._timeToStamp(this._getToDay()) )
   },
   computed:{
       timeStamp() {
@@ -71,7 +70,10 @@ export default {
       },
       isToday() {
           return this.time == today() ? true : false
-      }
+      },
+      ...mapGetters({
+          'isPlayLive':'isLive'
+      })
   },
   watch:{
       cid(newCid) {
