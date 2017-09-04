@@ -20,7 +20,7 @@
             <ul class="pick-data-list">
                 <li 
                     class="list day" 
-                    :class="[item.value == day && item.currentMonth ? currentDate : '', currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? currentMonth :noCurrentMonth ]"
+                    :class="[item.value == day && item.currentMonth ? isSelectedClass : '', item.currentMonth ? currentMonth :noCurrentMonth ]"
                     v-for="(item, index) in dateList"
                     @click="selectDay(item, index)">
                     {{item.value}}
@@ -44,7 +44,6 @@ export default {
           year:new Date().getFullYear(),
           month:new Date().getMonth(),
           day:new Date().getDate(),
-          currentDayIndex:-1,
           isSelectedClass:'isSelected',
           currentDate:'currentDate',
           currentMonth:'currentMonth',
@@ -89,7 +88,7 @@ export default {
   methods:{
       selectDay(item, index){
           if(item.currentMonth){//当月日期可选
-              this.currentDayIndex = index;
+              this.day = item.value
               let date = {
                   year:this.year,
                   month:this.month + 1,
