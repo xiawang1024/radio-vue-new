@@ -1,6 +1,7 @@
 <template>
-    <div class="volume-bar" :class="isZeroVolume ? 'no-volume-icon' : ''">
-        <div class="bar">
+    <div class="volume-bar" >
+        <div class="icon" :class="isZeroVolume ? 'no-volume-icon' : ''" @click.self="switchVolume"></div>
+        <div class="bar" v-if="isShow">
             <vue-slider class="volume" @callback="cb" v-bind="progress" v-model="value"></vue-slider>
         </div>
     </div>
@@ -17,14 +18,14 @@ export default {
     props: {
        volume:{
            type:Number,
-           default:0.9
+           default:0.8
        }
     },
     data() {
         return {
             value: 80,
             progress: {
-                value: 0,
+                value: 80,
                 height: 250,
                 width:16,
                 dotSize: 66,
@@ -41,12 +42,15 @@ export default {
                     backgroundColor: '#000000',
                     boxShadow: "0 0px 0px 4px #333333 inset"
                 }
-            }
+            },
+            isShow:false
         }
     },
     watch: {
         volume(newVolume) {
-            this.value = this.newVolume * 100
+            setTimeout(() => {
+                this.value = this.newVolume * 100
+            },20)
         }
     },
     computed:{
@@ -59,7 +63,9 @@ export default {
             const volume = val / 100;
             this.$emit('volumeChange', volume)
         },
-        
+        switchVolume() {
+            this.isShow = !this.isShow
+        }
     }
 
 }
@@ -71,11 +77,15 @@ export default {
     z-index 10240
     width 115px
     height 115px
-    background url('./volume-icon.png') center center no-repeat
-    background-size 115px 115px
-    &.no-volume-icon
-        background url('./no-volume-icon.png') center center no-repeat
-        background-size 115px 115px
+    .icon
+        display inline-block
+        width 115px
+        height 115px
+        background url('./volume-icon.png') center center no-repeat
+        background-size 80px 80px
+        &.no-volume-icon
+            background url('./no-volume-icon.png') center center no-repeat
+            background-size 80px 80px
     .bar
         position absolute
         bottom 140px
