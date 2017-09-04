@@ -114,9 +114,13 @@ export default {
         },
         openChannel() {
             this.isShowChannel = true;
+            this.isShowDatePicker = false;
+            this.isShowProgram = false;
         },
         openDate() {
             this.isShowDatePicker = true
+            this.isShowChannel = false;
+            this.isShowProgram = false;
         },
         openProgram() {
             this.isShowProgram = true
