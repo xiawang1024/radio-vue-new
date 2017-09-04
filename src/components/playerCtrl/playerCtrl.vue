@@ -25,6 +25,7 @@
 import { pad } from 'common/js/util.js'
 import ProgressBar from 'components/progressBar/progressBar'
 import VolumeBar from 'components/volumeBar/volumeBar'
+import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'play-ctrl',
     components:{
@@ -33,7 +34,6 @@ export default {
     },
     data() {
         return {
-            isPlay:true,
             currentTime:0,
             duration:0,
             volume:0
@@ -42,7 +42,10 @@ export default {
     computed:{
         percent() {
             return this.currentTime / this.duration;
-        }
+        },
+        ...mapGetters([
+            'isPlay'
+        ])
     },
     mounted() {
         this.audio = document.getElementById('audio');
@@ -58,15 +61,15 @@ export default {
             }else{
                 this._audioPause()
             }
-            this.$emit('play',this.isPlay)
+            // this.$emit('play', this.isPlay)
         },
         _audioPlay() {
             this.audio.play()
-            this.isPlay = true;
+            this.setIsPlay(true);
         },
         _audioPause() {
             this.audio.pause()
-            this.isPlay = false;
+            this.setIsPlay(false);
         },
         onPercentChange(percent) {
             this.audio.currentTime = this.duration * percent
@@ -81,6 +84,9 @@ export default {
                 this.duration = e.target.duration;
             })  
         },
+        ...mapActions([
+            'setIsPlay'
+        ])
     }
 }
 </script>

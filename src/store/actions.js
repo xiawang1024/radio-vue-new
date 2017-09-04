@@ -12,3 +12,7 @@ export const setPlayBackInfo = function ({commit, state}, playBackInfo) {
 export const isLive = function ({commit, state}, isLive) {
     commit(types.SET_ISLIVE, isLive)
 }
+
+export const setIsPlay = function ({commit, state}, isPlay) {
+	commit(types.SET_ISPLAY, isPlay)
+}

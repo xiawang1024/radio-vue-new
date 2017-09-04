@@ -20,7 +20,7 @@
             <ul class="pick-data-list">
                 <li 
                     class="list day" 
-                    :class="[ item.currentMonth && currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? '' :noCurrentMonth ]"
+                    :class="[item.value == day && item.currentMonth ? currentDate : '', currentDayIndex == index ? isSelectedClass : '', item.currentMonth ? currentMonth :noCurrentMonth ]"
                     v-for="(item, index) in dateList"
                     @click="selectDay(item, index)">
                     {{item.value}}
@@ -43,8 +43,11 @@ export default {
           week:week,
           year:new Date().getFullYear(),
           month:new Date().getMonth(),
+          day:new Date().getDate(),
           currentDayIndex:-1,
           isSelectedClass:'isSelected',
+          currentDate:'currentDate',
+          currentMonth:'currentMonth',
           noCurrentMonth:'no-current-month'
       }
   },
@@ -202,10 +205,14 @@ export default {
                 &.isSelected
                     background #0081dc
                     color #ffffff
-                &:hover
-                    background #0081dc
+                &.currentDate
+                    background #3498db
                     color #ffffff
-                    cursor pointer
+                &.currentMonth                  
+                  &:hover
+                      background #0081dc
+                      color #ffffff
+                      cursor pointer
         .pick-week
             background #1f1f21
             color #aab7c5

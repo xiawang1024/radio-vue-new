@@ -12,15 +12,16 @@
                 <span class="isPlayBack">
                     <span 
                         @click="playBack(item, index)"
-                        v-show="item.playUrl && item.playUrl.length > 0" 
-                        class="playback">
-                        回听
-                    </span>
-                    <span 
-                        @click="playBack(item, index)"
                         v-if="liveIndex == index && isToday" 
                         class="playback">
                         LIVE
+                    </span>
+                    <span 
+                        v-else
+                        @click="playBack(item, index)"
+                        v-show="item.playUrl && item.playUrl.length > 0" 
+                        class="playback">
+                        回听
                     </span>
                 </span>
               </li>
@@ -82,7 +83,7 @@ export default {
   },
   methods:{
       ...mapActions([
-          'setPlayBackInfo', 'isLive'
+          'setPlayBackInfo', 'isLive', 'setIsPlay'
       ]),
       getProgram(cid, time){
           clickItem(cid, time).then((res) => {
@@ -97,6 +98,7 @@ export default {
           this.setPlayBackInfo(program)
           this._isLive(program)
           this.$emit('playBack', program)
+          this.setIsPlay(true)
           this.playIndex = index;
       },
       _isLive(playBackInfo) {
