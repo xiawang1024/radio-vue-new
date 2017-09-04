@@ -23,6 +23,13 @@
         </div>
         <div class="picker">
             <date-picker 
+                :year="year"
+                :month="month"
+                :day="day"
+                @prevYear="prevYear"
+                @nextYear="nextYear"
+                @prevMonth="prevMonth"
+                @nextMonth="nextMonth"
                 @closeDatePick="closeDatePick"
                 :isShowDatePicker="isShowDatePicker"
                 @selectDate="selectDate">
@@ -62,11 +69,14 @@ export default {
             isShowDatePicker:false,//是否显示日期组件
             isShowProgram:false,//是否显示节目列表组件
             cid:1,//频率cid
+            year: new Date().getFullYear(),
+            month: new Date().getMonth(),
+            day: new Date().getDate()
         }
     },
     computed:{
        ...mapGetters([
-           'isLive', 'channel'
+           'isLive', 'channel', 'playBackInfo'
        ])
     },
     mounted() {
@@ -81,6 +91,9 @@ export default {
             this.selectChannel(this.channel)
             this.setPlayBackInfo({})
             this.setIsLive(true)
+            this.isShowChannel = false;
+            this.isShowDatePicker = false;
+            this.isShowProgram = false;
         },
         goToHome() {
             this.$router.push({
@@ -92,7 +105,8 @@ export default {
             this._playHlsSrc(channel.streams[0])
             this.isShowChannel = false;   
             this.cid = parseInt(channel.cid); 
-            this.date = this._getToDay()       
+            this.date = this._getToDay()   
+            this.setDate(this.date)    
         },
         selectDate(date){
             this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
@@ -109,8 +123,17 @@ export default {
             }else{                
                 //点播...
                 this._playHlsSrc(program.playUrl[0])
-            }
-            
+                this.setDate(this.playBackInfo.date)
+            }            
+        },
+        //设置日期
+        setDate(date) {
+            let year = new Date(date).getFullYear()
+            let month = new Date(date).getMonth()
+            let day = new Date(date).getDate()
+            this.year = year
+            this.month = month
+            this.day = day
         },
         openChannel() {
             this.isShowChannel = true;
@@ -130,6 +153,7 @@ export default {
         },
         closeDatePick() {
             this.isShowDatePicker = false
+            this.setDate(this.playBackInfo.date)
         },
         closeProgramList() {
             this.isShowProgram = false
@@ -166,6 +190,31 @@ export default {
             'setIsLive':'isLive',
             'setPlayBackInfo':'setPlayBackInfo'
         }),
+        prevYear() {
+            this.year --
+        },
+        nextYear() {
+            let maxYear = new Date().getFullYear()
+            if (this.year < maxYear) {
+                this.year++
+            } else {
+                return
+            }
+        },
+        prevMonth() {
+            if (this.month >= 1) {
+                this.month--;
+            } else {
+                this.month = 11
+            }
+        },
+        nextMonth() {
+            if (this.month >= 11) {
+                this.month = 0;
+            } else {
+                this.month++;
+            }
+        },
     }
 }
 </script>

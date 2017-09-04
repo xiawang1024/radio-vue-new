@@ -41,9 +41,9 @@ export default {
   data() {
       return {
           week:week,
-          year:new Date().getFullYear(),
-          month:new Date().getMonth(),
-          day:new Date().getDate(),
+        //   year:new Date().getFullYear(),
+        //   month:new Date().getMonth(),
+        //   day:new Date().getDate(),
           isSelectedClass:'isSelected',
           currentDate:'currentDate',
           currentMonth:'currentMonth',
@@ -54,6 +54,18 @@ export default {
       isShowDatePicker:{
           type:Boolean,
           default:false
+      },
+      year:{
+          type:Number,
+          default: new Date().getFullYear()
+      },
+      month:{
+          type: Number,
+          default: new Date().getMonth()
+      },
+      day:{
+          type: Number,
+          default: new Date().getDate()
       }
   },
   computed: {
@@ -88,7 +100,7 @@ export default {
   methods:{
       selectDay(item, index){
           if(item.currentMonth){//当月日期可选
-              this.day = item.value
+            //   this.day = item.value
               let date = {
                   year:this.year,
                   month:this.month + 1,
@@ -100,29 +112,16 @@ export default {
           }      
       },
       prevYear() {
-          this.year--
+          this.$emit('prevYear')
       },
       nextYear() {
-          let maxYear = new Date().getFullYear()
-          if(this.year< maxYear){
-              this.year++
-          }else{
-              return
-          }          
+          this.$emit('nextYear')       
       },
       prevMonth() {
-          if(this.month >=1){
-              this.month--;
-          }else{
-              this.month = 11
-          }
+          this.$emit('prevMonth')
       },
       nextMonth() {
-          if(this.month >=11){
-              this.month = 0;
-          }else{              
-              this.month++;
-          }
+         this.$emit('nextMonth')
       },
       closeDatePick() {
           this.$emit('closeDatePick', false)
