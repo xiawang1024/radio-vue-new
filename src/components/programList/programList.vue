@@ -2,7 +2,7 @@
   <transition name="fade">
       <div class="program-list" v-show="isShowProgram">
           <ul class="list-wrap">
-              <li class="list" v-for="(item, index) in programList" :class="playIndex == index ? 'isPlay' : ''">
+              <li class="list" v-for="(item, index) in programList" :class="isToday && playIndex == index ? 'isPlay' : ''">
                 <span class="time">
                     {{format(item.beginTime)}} - {{format(item.endTime)}}
                 </span>
@@ -90,6 +90,7 @@ export default {
               this.programList = res.data.programs
               setTimeout(() => {
                   this._liveIndex(this.programList)
+                  this.playIndex = this.liveIndex
               },20)
           })
       },
