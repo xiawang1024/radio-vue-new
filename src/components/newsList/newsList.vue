@@ -2,7 +2,7 @@
     <div class="news clearfix">
         <div class="img-list">
             <div class="item" v-for="item in dataList">
-                <a :href="item.link">
+                <a v-if="item && item.link" :href="item.link">
                     <img :src="item.icon" alt="" class="img">
                 </a>
             </div>
@@ -10,12 +10,12 @@
         <div class="text-list">
             <div class="top">
                 <h2 class="title">
-                    <a :href="top[0].link">
+                    <a v-if="top[0] && top[0].link" :href="top[0].link">
                         {{top[0].title}}
                     </a>
                 </h2>
                 <p class="desc">
-                    <a :href="top[0].link">{{top[0].desc}}</a>
+                    <a v-if="top[0] && top[0].link" :href="top[0].link">{{top[0].desc}}</a>
                 </p>
             </div>
             <div class="list-wrap-row">
@@ -23,7 +23,7 @@
                     <li class="list" v-for="item in listOne">
                         <span class="dot"></span>
                         <span class="link">
-                            <a :href="item.link">{{item.title}}</a>
+                            <a v-if="item && item.link" :href="item.link">{{item.title}}</a>
                         </span>
                     </li>
                 </ul>
@@ -33,7 +33,7 @@
                     <li class="list" v-for="item in listTwo">
                         <span class="dot"></span>
                         <span class="link">
-                            <a :href="item.link">{{item.title}}</a>
+                            <a v-if="item && item.link" :href="item.link">{{item.title}}</a>
                         </span>
                     </li>
                 </ul>
