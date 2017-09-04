@@ -1,57 +1,79 @@
 <template>
     <div class="channel">
         <div class="row row-1 clearfix">
-            <div class="item item-01">                
-                <img src="./logo/01.png" alt=""class="logo">        
-                <h3 class="name">新闻广播</h3>
+            <div class="item item-01">   
+                <a href="http://www.hndt.com/fm/954/index.html">            
+                    <img src="./logo/01.png" alt=""class="logo">        
+                    <h3 class="name">新闻广播</h3>
+                </a>
             </div>
             <div class="item item-02-03-04">
                 <div class="item item-02-03">
                     <div class="item item-02">
-                        <img src="./logo/02.png" alt=""class="logo">        
-                        <h3 class="name">新闻广播</h3>
+                        <a href="">  
+                            <img src="./logo/02.png" alt=""class="logo">        
+                            <h3 class="name">经济广播</h3>
+                        </a>
                     </div>
                     <div class="item item-03">
-                        <img src="./logo/03.png" alt=""class="logo">        
-                        <h3 class="name">新闻广播</h3>
+                        <a href="http://www.hndt.com/fm/1041/index.html">
+                            <img src="./logo/03.png" alt=""class="logo">        
+                            <h3 class="name">交通广播</h3>
+                        </a>
                     </div>
                 </div>
                 <div class="item item-04">
-                    <img src="./logo/04.png" alt=""class="logo">        
-                    <h3 class="name">新闻广播</h3>
+                    <a href="http://www.hndt.com/fm/976/index.html">
+                        <img src="./logo/04.png" alt=""class="logo">        
+                        <h3 class="name">戏曲广播</h3>
+                    </a>
                 </div>
             </div>
         </div>
         <div class="row row-2">
             <div class="item item-05">
-                <img src="./logo/05.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/881/index.html">
+                    <img src="./logo/05.png" alt="" class="logo">
+                    <h3 class="name">音乐广播</h3>
+                </a>
             </div>
             <div class="item item-06">
-                <img src="./logo/06.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/1074/index.html">
+                    <img src="./logo/06.png" alt="" class="logo">
+                    <h3 class="name">农村广播</h3>
+                </a>
             </div>
             <div class="item item-07">
-                <img src="./logo/07.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/900/index.html">
+                    <img src="./logo/07.png" alt="" class="logo">
+                    <h3 class="name">流行音乐</h3>
+                </a>
             </div>
             <div class="item item-08">
-                <img src="./logo/08.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/999/index.html">
+                    <img src="./logo/08.png" alt="" class="logo">
+                    <h3 class="name">私家车广播</h3>
+                </a>
             </div>
         </div>
         <div class="row row-3">
             <div class="item item-09">
-                <img src="./logo/09.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/1066/index.html">
+                    <img src="./logo/09.png" alt="" class="logo">
+                    <h3 class="name">驾车1066</h3>
+                </a>
             </div>
             <div class="item item-10">
-                <img src="./logo/10.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/936/index.html">
+                    <img src="./logo/10.png" alt="" class="logo">
+                    <h3 class="name">天籁之音</h3>
+                </a>
             </div>
             <div class="item item-11">
-                <img src="./logo/11.png" alt="" class="logo">
-                <h3 class="name">音乐广播</h3>
+                <a href="http://www.hndt.com/fm/1056/index.html">
+                    <img src="./logo/11.png" alt="" class="logo">
+                    <h3 class="name">乐龄1056</h3>
+                </a>
             </div>
         </div>
     </div>
