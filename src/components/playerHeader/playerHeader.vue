@@ -106,7 +106,7 @@ export default {
             this.isShowChannel = false;   
             this.cid = parseInt(channel.cid); 
             this.date = today()
-            this.setDate(today)  
+            this.setDate(today())  
         },
         selectDate(date){
             this.date = `${date.year}-${pad(date.month)}-${pad(date.day)}`
