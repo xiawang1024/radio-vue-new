@@ -1,7 +1,7 @@
 <template>
     <div class="play-header">
         <span class="back-icon" @click="goToHome"></span>
-        <span class="btn live-wrap isLive">
+        <span class="btn live-wrap" :class="!isLive ? 'isLive' : ''" @click="oneLivePlay">
             <span class="text">听直播</span>
         </span>
         <span 
@@ -76,6 +76,12 @@ export default {
         },20)
     },
     methods:{
+        //一键直播
+        oneLivePlay() {
+            this.selectChannel(this.channel)
+            this.setPlayBackInfo({})
+            this.setIsLive(true)
+        },
         goToHome() {
             this.$router.push({
                 path: '/home'
@@ -151,9 +157,11 @@ export default {
                 this.audio.setAttribute('src', stream)
             }
         },
-        ...mapActions([
-            'setChannel'
-        ]),
+        ...mapActions({
+            'setChannel':'setChannel',
+            'setIsLive':'isLive',
+            'setPlayBackInfo':'setPlayBackInfo'
+        }),
     }
 }
 </script>
