@@ -22,7 +22,7 @@
                     class="list day" 
                     :class="[item.value == day && item.currentMonth ? isSelectedClass : '', item.currentMonth ? currentMonth :noCurrentMonth ]"
                     v-for="(item, index) in dateList"
-                    @click="selectDay(item, index)">
+                    @click.stop="selectDay(item, index)">
                     {{item.value}}
                 </li>
             </ul>

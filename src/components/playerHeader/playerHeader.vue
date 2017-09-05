@@ -5,12 +5,12 @@
             <span class="text">听直播</span>
         </span>
         <span 
-            @click="openChannel"
+            @click.stop="openChannel"
             class="btn channel-wrap">
             {{channel.name}}
         </span>
         <span 
-            @click="openDate"
+            @click.stop="openDate"
             class="btn date-wrap">
             {{date}}
         </span>
@@ -83,6 +83,12 @@ export default {
         setTimeout(() => {
             this.date = today()
         },20)
+        document.addEventListener('click', (e) => {
+            e.stopPropagation()
+            this.isShowChannel = false;
+            this.isShowDatePicker = false;
+            this.isShowProgram = false;
+        })
     },
     methods:{
         //一键直播
