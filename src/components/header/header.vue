@@ -25,7 +25,7 @@ export default {
     align-items center
     justify-content space-between
     width 100%
-    height 240px
+    height 260px
     span 
         display inline-block
         &.logo-wrap

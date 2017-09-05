@@ -15,10 +15,10 @@ export default {
 @import '../../common/stylus/variable.styl'
 .player-footer
     width 100%
-    height 460px
+    height 400px
     background $color-background
     .qrcode
-        margin-top 45px
+        margin-top 60px
         width 100%
         height 170px
         background url('./qrcode.png') center center no-repeat
