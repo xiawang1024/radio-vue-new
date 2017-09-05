@@ -220,7 +220,7 @@ export default {
 @import '../../common/stylus/variable.styl'
 .play-header
     width 100%
-    height 258px
+    height 250px
     display flex
     align-items center
     justify-content space-between

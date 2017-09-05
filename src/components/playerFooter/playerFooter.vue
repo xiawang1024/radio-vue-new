@@ -18,7 +18,7 @@ export default {
     height 460px
     background $color-background
     .qrcode
-        margin-top 60px
+        margin-top 45px
         width 100%
         height 170px
         background url('./qrcode.png') center center no-repeat
