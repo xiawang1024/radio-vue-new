@@ -1,87 +1,110 @@
 <template>
     <div class="channel">
         <div class="row row-1 clearfix">
-            <div class="item item-01">   
-                <a href="http://www.hndt.com/fm/954/index.html">            
+            <div class="item item-01" @click="openWindow">   
+                <!-- <a href="http://www.hndt.com/fm/954/index.html">             -->
                     <img src="./logo/01.png" alt=""class="logo">        
                     <h3 class="name">新闻广播</h3>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="item item-02-03-04">
                 <div class="item item-02-03">
                     <div class="item item-02">
-                        <a href="">  
+                        <!-- <a href="">   -->
                             <img src="./logo/02.png" alt=""class="logo">        
                             <h3 class="name">经济广播</h3>
-                        </a>
+                        <!-- </a> -->
                     </div>
                     <div class="item item-03">
-                        <a href="http://www.hndt.com/fm/1041/index.html">
+                        <!-- <a href="http://www.hndt.com/fm/1041/index.html"> -->
                             <img src="./logo/03.png" alt=""class="logo">        
                             <h3 class="name">交通广播</h3>
-                        </a>
+                        <!-- </a> -->
                     </div>
                 </div>
                 <div class="item item-04">
-                    <a href="http://www.hndt.com/fm/976/index.html">
+                    <!-- <a href="http://www.hndt.com/fm/976/index.html"> -->
                         <img src="./logo/04.png" alt=""class="logo">        
                         <h3 class="name">戏曲广播</h3>
-                    </a>
+                    <!-- </a> -->
                 </div>
             </div>
         </div>
         <div class="row row-2">
             <div class="item item-05">
-                <a href="http://www.hndt.com/fm/881/index.html">
+                <!-- <a href="http://www.hndt.com/fm/881/index.html"> -->
                     <img src="./logo/05.png" alt="" class="logo">
                     <h3 class="name">音乐广播</h3>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="item item-06">
-                <a href="http://www.hndt.com/fm/1074/index.html">
+                <!-- <a href="http://www.hndt.com/fm/1074/index.html"> -->
                     <img src="./logo/06.png" alt="" class="logo">
                     <h3 class="name">农村广播</h3>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="item item-07">
-                <a href="http://www.hndt.com/fm/900/index.html">
+                <!-- <a href="http://www.hndt.com/fm/900/index.html"> -->
                     <img src="./logo/07.png" alt="" class="logo">
                     <h3 class="name">流行音乐</h3>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="item item-08">
-                <a href="http://www.hndt.com/fm/999/index.html">
+                <!-- <a href="http://www.hndt.com/fm/999/index.html"> -->
                     <img src="./logo/08.png" alt="" class="logo">
                     <h3 class="name">私家车广播</h3>
-                </a>
+                <!-- </a> -->
             </div>
         </div>
         <div class="row row-3">
             <div class="item item-09">
-                <a href="http://www.hndt.com/fm/1066/index.html">
+                <!-- <a href="http://www.hndt.com/fm/1066/index.html"> -->
                     <img src="./logo/09.png" alt="" class="logo">
                     <h3 class="name">驾车1066</h3>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="item item-10">
-                <a href="http://www.hndt.com/fm/936/index.html">
+                <!-- <a href="http://www.hndt.com/fm/936/index.html"> -->
                     <img src="./logo/10.png" alt="" class="logo">
                     <h3 class="name">天籁之音</h3>
-                </a>
+                <!-- </a> -->
             </div>
             <div class="item item-11">
-                <a href="http://www.hndt.com/fm/1056/index.html">
+                <!-- <a href="http://www.hndt.com/fm/1056/index.html"> -->
                     <img src="./logo/11.png" alt="" class="logo">
                     <h3 class="name">乐龄1056</h3>
-                </a>
+                <!-- </a> -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
+const linkList = [
+    { name: '新闻广播', href: 'http://www.hndt.com/fm/954/index.html' },
+    { name: '交通广播', href: 'http://www.hndt.com/fm/1041/index.html' },
+    { name: '戏曲广播', href: 'http://www.hndt.com/fm/976/index.html' },
+    { name: '音乐广播', href: 'http://www.hndt.com/fm/881/index.html' },
+    { name: '农村广播', href: 'http://www.hndt.com/fm/1074/index.html' },
+    { name: '流行音乐', href: 'http://www.hndt.com/fm/900/index.html' },
+    { name: '私家车广播', href: 'http://www.hndt.com/fm/999/index.html' },
+    { name: '驾车1066', href: 'http://www.hndt.com/fm/1066/index.html' },
+    { name: '天籁之音', href: 'http://www.hndt.com/fm/936/index.html' },
+    { name: '乐龄1056', href: 'http://www.hndt.com/fm/1056/index.html' },
+]
 export default {
-  name:'channel'
+  name:'channel',
+  methods:{
+      openWindow() {
+          layer.open({
+              type:2,
+              title:'河南广播网',
+              area:['100%','100%'],
+              anim:2,
+              content:['http://www.hndt.com/fm/1056/index.html']
+          })
+      }
+  }
 }
 </script>
 
