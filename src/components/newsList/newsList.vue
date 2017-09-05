@@ -2,7 +2,7 @@
     <div class="news clearfix">
         <div class="img-list">
             <div class="item" v-for="item in dataList">
-                <a v-if="item && item.link" :href="item.link">
+                <a v-if="item && item.link" :href="item.link"  @click.stop.prevent="openWindow(item.link)">
                     <img :src="item.icon" alt="" class="img">
                 </a>
             </div>
@@ -10,30 +10,30 @@
         <div class="text-list">
             <div class="top">
                 <h2 class="title">
-                    <a v-if="top[0] && top[0].link" :href="top[0].link">
+                    <a v-if="top[0] && top[0].link" :href="top[0].link" @click.stop.prevent="openWindow(top[0].link)">
                         {{top[0].title}}
                     </a>
                 </h2>
                 <p class="desc">
-                    <a v-if="top[0] && top[0].link" :href="top[0].link">{{top[0].desc}}</a>
+                    <a v-if="top[0] && top[0].link" :href="top[0].link" @click.stop.prevent="openWindow(top[0].link)">{{top[0].desc}}</a>
                 </p>
             </div>
             <div class="list-wrap-row">
                 <ul class="list-wrap clearfix">
-                    <li class="list" v-for="item in listOne">
+                    <li class="list" v-for="item in listOne" >
                         <span class="dot"></span>
                         <span class="link">
-                            <a v-if="item && item.link" :href="item.link">{{item.title}}</a>
+                            <a v-if="item && item.link" :href="item.link" @click.stop.prevent="openWindow(item.link)">{{item.title}}</a>
                         </span>
                     </li>
                 </ul>
             </div>
             <div class="list-wrap-vertical clearfix">
                 <ul class="list-wrap">
-                    <li class="list" v-for="item in listTwo">
+                    <li class="list" v-for="item in listTwo" >
                         <span class="dot"></span>
                         <span class="link">
-                            <a v-if="item && item.link" :href="item.link">{{item.title}}</a>
+                            <a v-if="item && item.link" :href="item.link" @click.stop.prevent="openWindow(item.link)">{{item.title}}</a>
                         </span>
                     </li>
                 </ul>
@@ -70,7 +70,15 @@ export default {
         })
     },
     methods:{
-
+        openWindow(href) {
+            layer.open({
+                type: 2,
+                title: '河南广播网',
+                area: ['100%', '100%'],
+                anim: 5,
+                content: [href]
+            })
+        }
     }
 }
 </script>
