@@ -52,7 +52,15 @@ export default {
         this.watchPlayPercent()
         setTimeout(() => {
             this.volume = this.audio.volume
-        },20)
+        },20),
+        document.addEventListener("visibilitychange", () => {
+            // document.title = document.hidden ? "用户离开了" : "用户回来了";
+            if(document.hidden) {
+                this._audioPause()
+            }else{
+                this._audioPlay()
+            }
+        })
     },
     methods:{
         play() {
