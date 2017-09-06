@@ -103,10 +103,16 @@ export default {
       openWindow(id) {
           layer.open({
               type: 2,
-              title: '河南广播网',
+              title: ['河南广播网','font-size:16px'],
               area: ['100%', '100%'],
               anim: 5,
-              content: [linkList[id-1].href]
+              content: [linkList[id-1].href],
+              success:function() {
+                  document.getElementById('audio').pause()
+              },
+              end:function() {
+                  document.getElementById('audio').play()
+              }
           })
       },
   }
