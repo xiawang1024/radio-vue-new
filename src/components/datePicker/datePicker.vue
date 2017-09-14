@@ -3,14 +3,14 @@
     <div class="date-picker" v-show="isShowDatePicker">
         <div class="pick-hd">
             <div class="date-select year-wrap">
-                <span class="prev-icon" @click="prevYear"></span>
+                <span class="prev-icon" @click.stop="prevYear"></span>
                 <span class="year">{{year}}</span>
-                <span class="next-icon" @click="nextYear"></span>
+                <span class="next-icon" @click.stop="nextYear"></span>
             </div>
             <div class="date-select month-wrap">
-                <span class="prev-icon" @click="prevMonth"></span>
+                <span class="prev-icon" @click.stop="prevMonth"></span>
                 <span class="year">{{month + 1}}</span>
-                <span class="next-icon" @click="nextMonth"></span>
+                <span class="next-icon" @click.stop="nextMonth"></span>
             </div>
         </div>
         <div class="pick-data">
