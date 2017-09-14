@@ -22,5 +22,8 @@ export default {
 
 <style lang="stylus" scoped>
 .home
+    height 1920px
+    box-sizing border-box
+    overflow hidden
     padding-bottom 40px
 </style>

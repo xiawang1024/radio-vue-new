@@ -23,4 +23,7 @@ export default {
 <style lang="stylus" scoped>
 .player
     position relative
+    height 1920px
+    box-sizing border-box
+    overflow hidden
 </style>
