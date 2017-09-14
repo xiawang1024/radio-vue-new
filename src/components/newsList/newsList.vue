@@ -71,6 +71,9 @@ export default {
     },
     methods:{
         openWindow(href) {
+            setTimeout(() => {
+                document.getElementById('audio').pause()
+            }, 20)
             layer.open({
                 type: 2,
                 title: ['河南广播网', 'font-size:16px'],
@@ -78,10 +81,11 @@ export default {
                 anim: 5,
                 content: [href],
                 success: function() {
-                    document.getElementById('audio').pause()
                 },
                 end: function() {
-                    document.getElementById('audio').play()
+                    setTimeout(() => {
+                        document.getElementById('audio').play()
+                    }, 20)
                 }
             })
         }
