@@ -4,13 +4,13 @@
             <div class="left">
                 <h2 class="title">咨询活动</h2>
                 <div class="pic-wrap clearfix">
-                    <div class="item" v-for="n in 2">
+                    <div class="item" v-for="n in 2" v-bind:key="n">
                         <img src="http://www.hndt.com/news/201710/13/1910884/res/Et0pr9oN.jpg?1507858908116" alt="" class="img">
                         <p class="desc">河南省驻村办河南广播电视台河南省驻村办河南广播电视台</p>
                     </div>
                 </div>                
                 <ul class="list-wrap clearfix">
-                    <li class="list" v-for="n in 12">
+                    <li class="list" v-for="n in 12" v-bind:key="n">
                         <span class="dot"></span>河南省驻村办河南广播电视台河南省驻村办河南广播电视台
                     </li>
                 </ul>              
@@ -25,7 +25,7 @@
                         <div class="slider-box">                            
                             <swiper :options="columnSwiper" ref="columnSwiper">
                                 <!-- slides -->
-                                <swiper-slide v-for="n in 2">
+                                <swiper-slide v-for="n in 2" v-bind:key="n">
                                     <div class="img-wrap">
                                         <img src="http://www.hndt.com/brand/1041/1057/res/HRU9nl3c.png?1505177593721" alt="" class="img">
                                         <p class="name">南方谈交通</p>
@@ -42,7 +42,7 @@
                     <div class="slider">
                         <swiper :options="podcastSwiper" ref="podcastSwiper">
                             <!-- slides -->
-                            <swiper-slide v-for="n in 10">
+                            <swiper-slide v-for="n in 10" v-bind:key="n">
                                 <div class="img-wrap">
                                     <img src="http://www.hndt.com/podcast/1041/1021/res/it7e3U4V.jpg?1505469628026" alt="" class="img">
                                     <p class="name">南方谈交通</p>
@@ -60,7 +60,7 @@
             <div class="slider">
                 <swiper :options="radioHostSwiper" ref="radioSwiper">
                     <!-- slides -->
-                    <swiper-slide v-for="n in 10">
+                    <swiper-slide v-for="n in 10" v-bind:key="n">
                         <div class="img-wrap">
                             <img src="http://www.hndt.com/fm/976/res/PWRdajsu.jpg?1487823965778" alt="" class="img">
                             <p class="name">高兴</p>
