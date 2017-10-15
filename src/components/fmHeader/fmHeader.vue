@@ -4,7 +4,7 @@
           <span class="back"></span>
           <img src="http://www.hndt.com/fm/999/res/bmdxcvAc.png?1504578961695" alt="" class="logo">
       </div>
-      <div class="video-wrap">
+      <div class="video-wrap" :class="isInner ? 'isInner' : ''">
           <video class="video" src="http://www.hndt.com/fm/999/201708/07/1897791/res/kXhacpsr.mp4" controls></video>
       </div>
   </div>
@@ -14,8 +14,12 @@
 export default {
   name:'fmheader',
   props:{
-
+      isInner:{
+          type:Boolean,
+          default:false
+      }
   }
+
 }
 </script>
 
@@ -49,6 +53,12 @@ export default {
             display block
             margin 0 auto
             max-width 100%
-            height 550px
+            height 100%
+        &.isInner
+            width 650px
+            height 370px
+            margin 0 auto
+            overflow hidden
+                
 </style>
 

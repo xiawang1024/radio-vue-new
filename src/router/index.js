@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from 'pages/home/home'
 import Player from 'pages/player/player'
 import Fmpage from 'pages/fmpage/fmpage'
-import List from 'pages/list/list'
+import ColumnList from 'pages/columnlist/columnlist'
 import Inner from 'pages/inner/inner'
 
 Vue.use(Router)
@@ -29,9 +29,9 @@ export default new Router({
             component: Fmpage
         },
         {
-            path: '/list',
-            name: 'list',
-            component: List
+            path: '/columnlist',
+            name: 'columnlist',
+            component: ColumnList
         },
         {
             path: '/inner',
