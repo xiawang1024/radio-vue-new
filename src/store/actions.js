@@ -20,5 +20,3 @@ export const setIsPlay = function({ commit, state }, isPlay) {
 export const setArticle = function({ commit, state }, article) {
     commit(types.SET_ARTICLE, article)
 }
-
-export const
