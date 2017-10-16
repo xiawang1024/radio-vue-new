@@ -28,7 +28,7 @@ export default {
   },
   data() {
       return {
-          channel_id
+          channel_id:0
       }
   },
   created() {
@@ -40,7 +40,7 @@ export default {
               this.$router.push({
                   path: '/fmpage',
                   query:{
-                      channel_id:this.channel_id
+                      channel_id: this.$route.query.channel_id
                   }
               })
           }else{
