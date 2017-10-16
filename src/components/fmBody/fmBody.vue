@@ -4,14 +4,15 @@
             <div class="left">
                 <h2 class="title">咨询活动</h2>
                 <div class="pic-wrap clearfix">
-                    <div class="item" v-for="n in 2" v-bind:key="n">
-                        <img src="http://www.hndt.com/news/201710/13/1910884/res/Et0pr9oN.jpg?1507858908116" alt="" class="img">
-                        <p class="desc">河南省驻村办河南广播电视台河南省驻村办河南广播电视台</p>
+                    <div class="item" v-for="item in twoList">
+                        <img v-if="item.cover_url" :src="'http://www.hndt.com' + item.cover_url " alt="" class="img">
+                        <img v-else alt="" class="img" src="./default-pic.png">
+                        <p class="desc">{{item.name}}</p>
                     </div>
                 </div>                
                 <ul class="list-wrap clearfix">
-                    <li class="list" v-for="n in 12" v-bind:key="n">
-                        <span class="dot"></span>河南省驻村办河南广播电视台河南省驻村办河南广播电视台
+                    <li class="list" v-for="item in twelveList" >
+                        <span class="dot"></span>{{item.name}}
                     </li>
                 </ul>              
             </div>
@@ -25,10 +26,10 @@
                         <div class="slider-box">                            
                             <swiper :options="columnSwiper" ref="columnSwiper">
                                 <!-- slides -->
-                                <swiper-slide v-for="n in 2" v-bind:key="n">
+                                <swiper-slide v-for="item in columnList" v-bind:key="item.icon_url">
                                     <div class="img-wrap">
-                                        <img src="http://www.hndt.com/brand/1041/1057/res/HRU9nl3c.png?1505177593721" alt="" class="img">
-                                        <p class="name">南方谈交通</p>
+                                        <img :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
+                                        <p class="name">{{item.name}}</p>
                                     </div>
                                 </swiper-slide>
                             </swiper>
@@ -60,10 +61,10 @@
             <div class="slider">
                 <swiper :options="radioHostSwiper" ref="radioSwiper">
                     <!-- slides -->
-                    <swiper-slide v-for="n in 10" v-bind:key="n">
+                    <swiper-slide v-for="item in hostList" v-bind:key="item.url">
                         <div class="img-wrap">
-                            <img src="http://www.hndt.com/fm/976/res/PWRdajsu.jpg?1487823965778" alt="" class="img">
-                            <p class="name">高兴</p>
+                            <img :src="'http://www.hndt.com' + item.cover" alt="" class="img">
+                            <p class="name">{{item.name}}</p>
                         </div>
                     </swiper-slide>
                 </swiper>
@@ -82,11 +83,43 @@ export default {
         swiper,
         swiperSlide
     },
+    props:{
+        newsList:{
+            type:Array,
+            default:() => {
+                return []
+            }
+        },
+        hostList: {
+            type: Array,
+            default: () => {
+                return []
+            }
+        },
+        columnList:{
+            type: Array,
+            default: () => {
+                return []
+            }
+        }
+    },
+    computed :{
+        twoList() {
+            return this.newsList.filter((item,index) => {
+                return index < 2
+            })
+        },
+        twelveList() {
+            return this.newsList.filter((item,index) => {
+                return index >=2 && index < 14
+            })
+        }
+    },
     data () {
         return {
             columnSwiper: {
                 direction: 'vertical',
-                autoplay: 4000,
+                // autoplay: 4000,
                 slidesPerView: 1,
                 height: 140,
                 loop: true,
@@ -97,7 +130,7 @@ export default {
             },
             podcastSwiper: {
                 loop: true,
-                autoplay: 4000,
+                // autoplay: 4000,
                 setWrapperSize: true,
                 prevButton: '.podcast-wrap .swiper-button-prev',
                 nextButton: '.podcast-wrap .swiper-button-next',

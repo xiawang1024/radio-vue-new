@@ -1,22 +1,42 @@
 <template>
   <div class="fmheader">
       <div class="back-logo">
-          <span class="back"></span>
-          <img src="http://www.hndt.com/fm/999/res/bmdxcvAc.png?1504578961695" alt="" class="logo">
+          <span class="back" @click="goBackHome"></span>
+          <img :src="videoObj.icon_url" alt="" class="logo">
       </div>
       <div class="video-wrap" :class="isInner ? 'isInner' : ''">
-          <video class="video" src="http://www.hndt.com/fm/999/201708/07/1897791/res/kXhacpsr.mp4" controls autoplay></video>
+          <video class="video" :src="videoObj.video_url" controls autoplay preload="load"></video>
       </div>
   </div>
 </template>
 
 <script>
+
 export default {
   name:'fmheader',
   props:{
       isInner:{
           type:Boolean,
           default:false
+      },
+      videoObj:{
+          type:Object,
+          default:() => {
+              return {}
+          }
+      }
+  },
+  methods:{
+      goBackHome() {
+          if(this.isInner) {
+              this.$router.push({
+                  path: '/fmpage'
+              })
+          }else{
+              this.$router.push({
+                  path: '/home'
+              })
+          }
       }
   }
 

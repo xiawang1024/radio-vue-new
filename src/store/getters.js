@@ -9,3 +9,5 @@ export const isLive = state => state.isLive
 export const isPlay = state => state.isPlay
 
 export const article = state => state.article
+
+export const video = state => state.video

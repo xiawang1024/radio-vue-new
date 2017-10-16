@@ -15,6 +15,9 @@ const mutations = {
     },
     [types.SET_ARTICLE](state, article) {
         state.article = article
+    },
+    [types.SET_VIDEO](state, video) {
+        state.video = video
     }
 }
 

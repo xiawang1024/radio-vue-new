@@ -12,7 +12,8 @@ export default new Vuex.Store({
         playBackInfo: {},
         isLive: true,
         isPlay: true,
-        article: {}
+        article: {},
+        video: {}
     },
     actions,
     getters,

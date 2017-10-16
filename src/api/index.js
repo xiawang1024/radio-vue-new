@@ -36,9 +36,14 @@ const apiTwo = () => axios.get('http://api.hndt.com/api/page?template_id=176&row
 const getChannelVideo = (channel_id) => axios.get('http://api.hndt.com/api/page?template_id=204&channel_id=' + channel_id)
 
 /**
- * 获取频率主持人
+ * 获取频率活动
  * @param {Number} channel_id 频率id
  */
+const getChannelNews = (channel_id) => axios.get('http://api.hndt.com/api/page?template_id=205&channel_id=' + channel_id)
+    /**
+     * 获取频率主持人
+     * @param {Number} channel_id 频率id
+     */
 const getChannelHost = (channel_id) => axios.get('http://api.hndt.com/api/page?template_id=206&channel_id=' + channel_id)
 
 /**
@@ -67,6 +72,7 @@ export {
     apiOne,
     apiTwo,
     getChannelVideo,
+    getChannelNews,
     getChannelHost,
     getChannelColumn,
     getColumnList,

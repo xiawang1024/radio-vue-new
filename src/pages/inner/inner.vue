@@ -1,6 +1,6 @@
 <template>
     <div class="inner">
-        <fm-header :isInner="true"></fm-header>
+        <fm-header :isInner="true" :videoObj="videoObj"></fm-header>
         <div class="body">
             <h2 class="title">郑州一男子驾照吊销期间开车，被“天眼”发现！结果</h2>
             <div class="desc clearfix">
@@ -19,6 +19,7 @@
 <script>
 import FmHeader from 'components/fmHeader/fmHeader'
 import PlayerFooter from 'components/playerFooter/playerFooter'
+import { getChannelVideo, getArticle } from 'api/index'
 export default {
     name: 'inner',
     components: {
@@ -27,8 +28,16 @@ export default {
     },
     data() {
         return {
-
+            channel_id:903,
+            article_id:1910967,
+            videoObj:{}
         }
+    },
+    created() {
+        getChannelVideo(this.channel_id).then((res) => {
+            this.videoObj = res.data
+        })
+        getArticle(this.article_id)
     }
 }
 </script>

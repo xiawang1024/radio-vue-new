@@ -1,7 +1,7 @@
 <template>
     <div class="channel">
         <div class="row row-1 clearfix">
-            <div class="item item-01" @click="openWindow(1)">   
+            <div class="item item-01" @click="goToChannel(0)">   
                 <!-- <a href="http://www.hndt.com/fm/954/index.html">             -->
                     <img src="./logo/01.png" alt=""class="logo">        
                     <h3 class="name">新闻广播</h3>
@@ -15,14 +15,14 @@
                             <h3 class="name">经济广播</h3> -->
                         <!-- </a> -->
                     <!-- </div> -->
-                    <div class="item item-03" @click="openWindow(2)">
+                    <div class="item item-03" @click="goToChannel(1)">
                         <!-- <a href="http://www.hndt.com/fm/1041/index.html"> -->
                             <img src="./logo/03.png" alt=""class="logo">        
                             <h3 class="name">交通广播</h3>
                         <!-- </a> -->
                     </div>
                 </div>
-                <div class="item item-04" @click="openWindow(7)">
+                <div class="item item-04" @click="goToChannel(6)">
                     <!-- <a href="http://www.hndt.com/fm/976/index.html"> -->
                         <img src="./logo/08.png" alt=""class="logo">        
                         <h3 class="name">私家车广播</h3>
@@ -31,25 +31,25 @@
             </div>
         </div>
         <div class="row row-2">
-            <div class="item item-05" @click="openWindow(4)">
+            <div class="item item-05" @click="goToChannel(3)">
                 <!-- <a href="http://www.hndt.com/fm/881/index.html"> -->
                     <img src="./logo/05.png" alt="" class="logo">
                     <h3 class="name">音乐广播</h3>
                 <!-- </a> -->
             </div>
-            <div class="item item-06" @click="openWindow(5)">
+            <div class="item item-06" @click="goToChannel(4)">
                 <!-- <a href="http://www.hndt.com/fm/1074/index.html"> -->
                     <img src="./logo/06.png" alt="" class="logo">
                     <h3 class="name">农村广播</h3>
                 <!-- </a> -->
             </div>
-            <div class="item item-07" @click="openWindow(6)">
+            <div class="item item-07" @click="goToChannel(5)">
                 <!-- <a href="http://www.hndt.com/fm/900/index.html"> -->
                     <img src="./logo/07.png" alt="" class="logo">
                     <h3 class="name">流行音乐</h3>
                 <!-- </a> -->
             </div>
-            <div class="item item-08" @click="openWindow(3)">
+            <div class="item item-08" @click="goToChannel(2)">
                 <!-- <a href="http://www.hndt.com/fm/999/index.html"> -->
                     <img src="./logo/04.png" alt="" class="logo">
                     <h3 class="name">戏曲广播</h3>
@@ -57,19 +57,19 @@
             </div>
         </div>
         <div class="row row-3">
-            <div class="item item-09" @click="openWindow(8)">
+            <div class="item item-09" @click="goToChannel(7)">
                 <!-- <a href="http://www.hndt.com/fm/1066/index.html"> -->
                     <img src="./logo/09.png" alt="" class="logo">
                     <h3 class="name">驾车1066</h3>
                 <!-- </a> -->
             </div>
-            <div class="item item-10" @click="openWindow(9)">
+            <div class="item item-10" @click="goToChannel(8)">
                 <!-- <a href="http://www.hndt.com/fm/936/index.html"> -->
                     <img src="./logo/10.png" alt="" class="logo">
                     <h3 class="name">天籁之音</h3>
                 <!-- </a> -->
             </div>
-            <div class="item item-11" @click="openWindow(10)">
+            <div class="item item-11" @click="goToChannel(9)">
                 <!-- <a href="http://www.hndt.com/fm/1056/index.html"> -->
                     <img src="./logo/11.png" alt="" class="logo">
                     <h3 class="name">乐龄1056</h3>
@@ -81,16 +81,16 @@
 
 <script>
 const linkList = [
-    { id : 1, name: '新闻广播', href: 'http://www.hndt.com/fm/954/index.html' },
-    { id : 2, name: '交通广播', href: 'http://www.hndt.com/fm/1041/index.html' },
-    { id : 3, name: '戏曲广播', href: 'http://www.hndt.com/fm/976/index.html' },
-    { id : 4, name: '音乐广播', href: 'http://www.hndt.com/fm/881/index.html' },
-    { id : 5, name: '农村广播', href: 'http://www.hndt.com/fm/1074/index.html' },
-    { id : 6, name: '流行音乐', href: 'http://www.hndt.com/fm/900/index.html' },
-    { id : 7, name: '私家车广播', href: 'http://www.hndt.com/fm/999/index.html' },
-    { id : 8, name: '驾车1066', href: 'http://www.hndt.com/fm/1066/index.html' },
-    { id : 9, name: '天籁之音', href: 'http://www.hndt.com/fm/936/index.html' },
-    { id : 10, name: '乐龄1056', href: 'http://www.hndt.com/fm/1056/index.html' },
+    { id : 901, name: '新闻广播', href: 'http://www.hndt.com/fm/954/index.html' },
+    { id : 903, name: '交通广播', href: 'http://www.hndt.com/fm/1041/index.html' },
+    { id : 904, name: '戏曲广播', href: 'http://www.hndt.com/fm/976/index.html' },
+    { id : 905, name: '音乐广播', href: 'http://www.hndt.com/fm/881/index.html' },
+    { id : 906, name: '农村广播', href: 'http://www.hndt.com/fm/1074/index.html' },
+    { id : 907, name: '流行音乐', href: 'http://www.hndt.com/fm/900/index.html' },
+    { id : 908, name: '私家车广播', href: 'http://www.hndt.com/fm/999/index.html' },
+    { id : 909, name: '驾车1066', href: 'http://www.hndt.com/fm/1066/index.html' },
+    { id : 910, name: '天籁之音', href: 'http://www.hndt.com/fm/936/index.html' },
+    { id : 911, name: '乐龄1056', href: 'http://www.hndt.com/fm/1056/index.html' },
 ]
 export default {
   name:'channel',
@@ -100,25 +100,28 @@ export default {
       }
   },
   methods:{
-      openWindow(id) {
+      goToChannel(id) {
           setTimeout(() => {
               document.getElementById('audio').pause()
           }, 20)
-          layer.open({
-              type: 2,
-              title: ['河南广播网','font-size:16px'],
-              area: ['100%', '100%'],
-              anim: 5,
-              content: [linkList[id-1].href],
-              success:function() {
-                 
-              },
-              end:function() {
-                  setTimeout(() => {
-                      document.getElementById('audio').play()
-                  },20)
-              }
+          this.$router.push({
+              path: '/fmpage', query: { channel_id: linkList[id].id }
           })
+        //   layer.open({
+        //       type: 2,
+        //       title: ['河南广播网','font-size:16px'],
+        //       area: ['100%', '100%'],
+        //       anim: 5,
+        //       content: [linkList[id-1].href],
+        //       success:function() {
+                 
+        //       },
+        //       end:function() {
+        //           setTimeout(() => {
+        //               document.getElementById('audio').play()
+        //           },20)
+        //       }
+        //   })
       },
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <audio src="http://stream.hndt.com:1935/live/xinwen/playlist.m3u8" id="audio" autoplay style="display:none"></audio>
-    <keep-alive>
+    <keep-alive include="player">
       <router-view></router-view>
     </keep-alive>
   </div>
