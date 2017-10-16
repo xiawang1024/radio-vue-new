@@ -4,14 +4,14 @@
             <div class="left">
                 <h2 class="title">咨询活动</h2>
                 <div class="pic-wrap clearfix">
-                    <div class="item" v-for="item in twoList">
+                    <div class="item" v-for="item in twoList" @click="goToArticle(item.id,item.channel)" v-bind:key="item.id">
                         <img v-if="item.cover_url" :src="'http://www.hndt.com' + item.cover_url " alt="" class="img">
                         <img v-else alt="" class="img" src="./default-pic.png">
                         <p class="desc">{{item.name}}</p>
                     </div>
                 </div>                
                 <ul class="list-wrap clearfix">
-                    <li class="list" v-for="item in twelveList" >
+                    <li class="list" v-for="item in twelveList" @click="goToArticle(item.id,item.channel)" v-bind:key="item.id">
                         <span class="dot"></span>{{item.name}}
                     </li>
                 </ul>              
@@ -112,6 +112,17 @@ export default {
         twelveList() {
             return this.newsList.filter((item,index) => {
                 return index >=2 && index < 14
+            })
+        }
+    },
+    methods:{
+        goToArticle(article_id, channel_id) {
+            this.$router.push({
+                path:'/inner',
+                query:{
+                    channel_id,
+                    article_id
+                }
             })
         }
     },

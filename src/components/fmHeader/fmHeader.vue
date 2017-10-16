@@ -26,11 +26,22 @@ export default {
           }
       }
   },
+  data() {
+      return {
+          channel_id
+      }
+  },
+  created() {
+      this.channel_id = this.$route.query.channel_id
+  },
   methods:{
       goBackHome() {
           if(this.isInner) {
               this.$router.push({
-                  path: '/fmpage'
+                  path: '/fmpage',
+                  query:{
+                      channel_id:this.channel_id
+                  }
               })
           }else{
               this.$router.push({

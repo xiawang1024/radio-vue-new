@@ -2,14 +2,14 @@
     <div class="inner">
         <fm-header :isInner="true" :videoObj="videoObj"></fm-header>
         <div class="body">
-            <h2 class="title">郑州一男子驾照吊销期间开车，被“天眼”发现！结果</h2>
+            <h2 class="title">{{articleObj.title}}</h2>
             <div class="desc clearfix">
-                <span class="time">2017年5月17日</span>
-                <span class="from">来源：河南交通广播</span>
-                <span class="editor">责编：武晶晶</span>
+                <span class="time">{{articleObj.time}}</span>
+                <span class="from">来源：{{articleObj.origin}}</span>
+                <span class="editor">责编：{{articleObj.manager}}</span>
             </div>
-            <div class="text-wrap">
-                10月9日上午10点多，一辆车牌号为豫A336AF黑色现代越野车，在沿花园路由南向北行驶的时候，被郑州警方的机动车缉查布控系统发现并发出预警：该车辆所有人驾驶证状态异常，处于吊销状态，请注意拦截！经查，该车辆司机包某某在今年1月10日，因醉酒驾驶机动车被交警部门查获，其驾驶证已经被吊销。随后，交警一大队案件侦办中队对驾驶员包某某的无证驾驶违法进行了处理，并于当日晚将其送至拘留所拘留。            
+            <div class="text-wrap" v-html="articleObj.body">
+                          
             </div>
         </div>
         <player-footer></player-footer>
@@ -30,14 +30,19 @@ export default {
         return {
             channel_id:903,
             article_id:1910967,
-            videoObj:{}
+            videoObj:{},
+            articleObj:{}
         }
     },
     created() {
+        this.channel_id = this.$route.query.channel_id
+        this.article_id = this.$route.query.article_id
         getChannelVideo(this.channel_id).then((res) => {
             this.videoObj = res.data
         })
-        getArticle(this.article_id)
+        getArticle(this.article_id).then((res) => {
+            this.articleObj = res.data
+        })
     }
 }
 </script>
