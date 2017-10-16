@@ -11,7 +11,10 @@ const mutations = {
         state.isLive = isLive
     },
     [types.SET_ISPLAY](state, isPlay) {
-    	state.isPlay = isPlay
+        state.isPlay = isPlay
+    },
+    [types.SET_ARTICLE](state, article) {
+        state.article = article
     }
 }
 

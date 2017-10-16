@@ -7,11 +7,12 @@ import mutations from './mutations.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-    state:{
-        channel:{},
-        playBackInfo:{},
-        isLive:true,
-        isPlay:true
+    state: {
+        channel: {},
+        playBackInfo: {},
+        isLive: true,
+        isPlay: true,
+        article: {}
     },
     actions,
     getters,

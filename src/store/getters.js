@@ -7,3 +7,5 @@ export const playBackInfo = state => state.playBackInfo
 export const isLive = state => state.isLive
 
 export const isPlay = state => state.isPlay
+
+export const article = state => state.article
