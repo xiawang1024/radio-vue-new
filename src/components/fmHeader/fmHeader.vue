@@ -5,7 +5,7 @@
           <img src="http://www.hndt.com/fm/999/res/bmdxcvAc.png?1504578961695" alt="" class="logo">
       </div>
       <div class="video-wrap" :class="isInner ? 'isInner' : ''">
-          <video class="video" src="http://www.hndt.com/fm/999/201708/07/1897791/res/kXhacpsr.mp4" controls></video>
+          <video class="video" src="http://www.hndt.com/fm/999/201708/07/1897791/res/kXhacpsr.mp4" controls autoplay></video>
       </div>
   </div>
 </template>
