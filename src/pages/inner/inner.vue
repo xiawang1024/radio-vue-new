@@ -8,7 +8,7 @@
                 <span class="from">来源：{{articleObj.origin}}</span>
                 <span class="editor">责编：{{articleObj.manager}}</span>
             </div>
-            <div class="text-wrap" v-html="articleObj.body">
+            <div id="inner" class="text-wrap" v-html="articleObj.body">
                           
             </div>
         </div>
@@ -42,7 +42,29 @@ export default {
         })
         getArticle(this.article_id).then((res) => {
             this.articleObj = res.data
+            this.$nextTick(() => {
+               
+            })
         })
+        
+    },
+    methods:{
+        // _initIframe() {
+        //     window.onload = () => {
+        //         let iframe = document.getElementsByTagName('iframe')[0];
+        //         // iframe.parentNode.style.textIndent=0
+        //         alert(1)
+        //         iframe.style.width = '600px'
+        //         // iframe.style.width = 'margin:0 auto'
+        //         let patt = /width=(.+)&height=(.+)&/g
+        //         let options = 'width=600&height=auto&'
+        //         let _src = iframe.attr("src").replace(patt, options)
+        //         console.log('------------------------------------');
+        //         console.log(iframe);
+        //         console.log('------------------------------------');
+                
+        //     }
+        // }
     }
 }
 </script>
