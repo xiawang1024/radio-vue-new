@@ -10,30 +10,30 @@
         <div class="text-list">
             <div class="top">
                 <h2 class="title">
-                    <a v-if="top[0] && top[0].link" :href="top[0].link" @click.stop.prevent="openWindow(top[0].link)">
+                    <a v-if="top[0] && top[0].link" :href="top[0].link" @click.stop.prevent="goToArticle(top[0].id)">
                         {{top[0].title}}
                     </a>
                 </h2>
                 <p class="desc">
-                    <a v-if="top[0] && top[0].link" :href="top[0].link" @click.stop.prevent="openWindow(top[0].link)">{{top[0].desc}}</a>
+                    <a v-if="top[0] && top[0].link" :href="top[0].link" @click.stop.prevent="goToArticle(top[0].id)">{{top[0].desc}}</a>
                 </p>
             </div>
             <div class="list-wrap-row">
                 <ul class="list-wrap clearfix">
-                    <li class="list" v-for="item in listOne" >
+                    <li class="list" v-for="item in listOne" v-bind:key="item.id">
                         <span class="dot"></span>
                         <span class="link">
-                            <a v-if="item && item.link" :href="item.link" @click.stop.prevent="openWindow(item.link)">{{item.title}}</a>
+                            <a v-if="item && item.link" :href="item.link" @click.stop.prevent="goToArticle(item.id)">{{item.title}}</a>
                         </span>
                     </li>
                 </ul>
             </div>
             <div class="list-wrap-vertical clearfix">
                 <ul class="list-wrap">
-                    <li class="list" v-for="item in listTwo" >
+                    <li class="list" v-for="item in listTwo" v-bind:key="item.id">
                         <span class="dot"></span>
                         <span class="link">
-                            <a v-if="item && item.link" :href="item.link" @click.stop.prevent="openWindow(item.link)">{{item.title}}</a>
+                            <a v-if="item && item.link" :href="item.link" @click.stop.prevent="goToArticle(item.id)">{{item.title}}</a>
                         </span>
                     </li>
                 </ul>
@@ -70,22 +70,30 @@ export default {
         })
     },
     methods:{
-        openWindow(href) {
-            setTimeout(() => {
-                document.getElementById('audio').pause()
-            }, 20)
-            layer.open({
-                type: 2,
-                title: ['河南广播网', 'font-size:16px'],
-                area: ['100%', '100%'],
-                anim: 5,
-                content: [href],
-                success: function() {
-                },
-                end: function() {
-                    setTimeout(() => {
-                        document.getElementById('audio').play()
-                    }, 20)
+        // goToArticle(href) {
+        //     setTimeout(() => {
+        //         document.getElementById('audio').pause()
+        //     }, 20)
+        //     layer.open({
+        //         type: 2,
+        //         title: ['河南广播网', 'font-size:16px'],
+        //         area: ['100%', '100%'],
+        //         anim: 5,
+        //         content: [href],
+        //         success: function() {
+        //         },
+        //         end: function() {
+        //             setTimeout(() => {
+        //                 document.getElementById('audio').play()
+        //             }, 20)
+        //         }
+        //     })
+        // }
+         goToArticle(article_id) {
+            this.$router.push({
+                path: '/inner',
+                query: {
+                    article_id
                 }
             })
         }
