@@ -2,9 +2,9 @@
   <div class="fmheader">
       <div class="back-logo">
           <span class="back" @click="goBackHome"></span>
-          <img :src="videoObj.icon_url" alt="" class="logo">
+          <img v-if="channel_id > 0" :src="videoObj.icon_url" alt="" class="logo">
       </div>
-      <div class="video-wrap" :class="isInner ? 'isInner' : ''">
+      <div class="video-wrap" :class="isInner ? 'isInner' : ''" v-if="channel_id > 0"> 
           <video class="video" :src="videoObj.video_url" controls autoplay preload="load"></video>
       </div>
   </div>
@@ -28,7 +28,7 @@ export default {
   },
   data() {
       return {
-          channel_id:0
+          channel_id:-1
       }
   },
   created() {
@@ -36,7 +36,7 @@ export default {
   },
   methods:{
       goBackHome() {
-          if(this.isInner) {
+          if(this.isInner && this.$route.query.channel_id) {
               this.$router.push({
                   path: '/fmpage',
                   query:{
