@@ -37,9 +37,11 @@ export default {
     created() {
         this.channel_id = this.$route.query.channel_id
         this.article_id = this.$route.query.article_id
-        getChannelVideo(this.channel_id).then((res) => {
-            this.videoObj = res.data
-        })
+        if(this.channel_id){
+            getChannelVideo(this.channel_id).then((res) => {
+                this.videoObj = res.data
+            })
+        }
         getArticle(this.article_id).then((res) => {
             this.articleObj = res.data
             this.$nextTick(() => {
@@ -73,7 +75,7 @@ export default {
 .inner
     min-height 1920px
     .body
-        margin-top 75px
+        margin-top 60px
         .title
             line-height 1.8
             font-size 50px
