@@ -5,8 +5,8 @@
             <h2 class="title">{{articleObj.title}}</h2>
             <div class="desc clearfix">
                 <span class="time">{{articleObj.time}}</span>
-                <span class="from">来源：{{articleObj.origin}}</span>
-                <span class="editor">责编：{{articleObj.manager}}</span>
+                <span class="from" v-if="articleObj.origin">来源：{{articleObj.origin}}</span>
+                <span class="editor" v-if="articleObj.manager">责编：{{articleObj.manager}}</span>
             </div>
             <div id="inner" class="text-wrap" v-html="articleObj.body">
                           
