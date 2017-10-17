@@ -81,3 +81,11 @@ body, html
     &:before
       height: 300%
       transform: scale(.333) translateZ(0)
+.fade-enter-active, .fade-leave-active 
+  transition: opacity .3s
+.fade-enter, .fade-leave-to /* .fade-leave-active in below version 2.1.8 */ 
+  opacity: 0
+iframe 
+  display block
+  margin 0 auto
+
