@@ -43,6 +43,14 @@ export default {
                       channel_id: this.$route.query.channel_id
                   }
               })
+          }else if(this.$route.query.column_id) {
+              this.$router.push({
+                  path: '/list',
+                  query:{
+                      column_id:this.$route.query.column_id,
+                      column_name:this.$route.query.column_name
+                  }
+              })
           }else{
               this.$router.push({
                   path: '/home'

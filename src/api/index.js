@@ -54,9 +54,9 @@ const getChannelColumn = (channel_id) => axios.get('http://api.hndt.com/api/page
 
 /**
  * 获取特色栏目列表数据
- * @param {Number} channel_id 频率id
+ * @param {Number} column_id 频率id
  */
-const getColumnList = (channel_id) => axios.get('http://api.hndt.com/api/page?template_id=209&channel_id=' + channel_id)
+const getColumnList = (column_id) => axios.get('http://api.hndt.com/api/page?template_id=209&channel_id=' + column_id)
 
 /**
  * 获取正文

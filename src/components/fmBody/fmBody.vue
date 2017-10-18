@@ -28,7 +28,7 @@
                                 <!-- slides -->
                                 <swiper-slide v-for="item in columnList" v-bind:key="item.icon_url">
                                     <div class="img-wrap">
-                                        <img :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
+                                        <img :src=" item.icon_url" alt="" class="img">
                                         <p class="name">{{item.name}}</p>
                                     </div>
                                 </swiper-slide>

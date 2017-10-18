@@ -101,4 +101,8 @@ export default {
             font-size 30px
             color rgb(153,153,153)
             text-indent 2em
+            img
+                display block
+                margin 0 auto
+                text-align center
 </style>

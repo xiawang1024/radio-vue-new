@@ -1,8 +1,8 @@
 <template>
     <div class="news clearfix">
         <div class="img-list">
-            <div class="item" v-for="item in dataList">
-                <a v-if="item && item.link" :href="item.link"  @click.stop.prevent="openWindow(item.link)">
+            <div class="item" v-for="item in dataList" v-bind:key="item.id">
+                <a v-if="item && item.link" :href="item.link"  @click.stop.prevent="goToList(item.id,item.name)">
                     <img :src="item.icon" alt="" class="img">
                 </a>
             </div>
@@ -60,6 +60,9 @@ export default {
     created() {
         apiOne().then((res) => {
             this.dataList = res.data.slice(0,3)
+            this.$nextTick(() => {
+
+            })
         })
 
         apiTwo().then((res) => {
@@ -67,6 +70,9 @@ export default {
             this.top = list.slice(0,1);
             this.listOne = list.slice(1,5);
             this.listTwo = list.slice(5,9);
+            this.$nextTick(() =>{
+
+            } )
         })
     },
     methods:{
@@ -89,11 +95,20 @@ export default {
         //         }
         //     })
         // }
-         goToArticle(article_id) {
+        goToArticle(article_id) {
             this.$router.push({
                 path: '/inner',
                 query: {
                     article_id
+                }
+            })
+        },
+        goToList(column_id, column_name) {
+            this.$router.push({
+                path: '/list',
+                query: {
+                    column_id,
+                    column_name
                 }
             })
         }

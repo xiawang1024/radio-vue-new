@@ -1,26 +1,74 @@
 <template>
   <div class="news-list">
       <div class="hd">
-          <span class="back-icon"></span>
-          <span class="title">新闻来了</span>
+          <span class="back-icon" @click="goBack"></span>
+          <span class="title">{{column_name}}</span>
       </div>
       <ul class="list-wrap">
-          <li class="list" v-for="n in 15">
-              <span class="title">1041新闻眼】郑州一男子驾照吊销期间开车，被“天眼”发现！结果1041新闻眼】郑州一男子驾照吊销期间开车，被“天眼”发现！结果“天眼”发现！结果</span>
-              <span class="time">2017-10-13</span>
+          <li class="list" v-for="item in columnList" v-bind:key="item.id" @click="goToArticle(item.id)">
+              <span class="title">{{item.title}}</span>
+              <span class="time">{{item.createtime}}</span>
           </li>
       </ul>
-      <page></page>
+      <!-- <page></page> -->
+      <player-footer></player-footer>
   </div>
 </template>
 
 
 <script>
 import Page from 'components/page/page'
+import PlayerFooter from 'components/playerFooter/playerFooter'
+import { getColumnList } from 'api/index'
 export default {
   name:'news-list',
   components:{
-      Page
+      Page,
+      PlayerFooter
+  },
+  data() {
+      return {
+          column_name:'',
+          columnList:[]
+      }
+  },
+  created() {
+    this.column_name = this.$route.query.column_name
+    getColumnList(this.$route.query.column_id).then((res) => {
+        this.columnList = res.data.list
+        this.$nextTick(() => {
+
+        })
+    })
+  },
+  methods:{
+      goToArticle(article_id) {
+          this.$router.push({
+              path: '/inner',
+              query: {
+                  article_id,
+                  column_id:this.$route.query.column_id,
+                  column_name:this.$route.query.column_name
+              }
+          })
+      },
+      goBack() {
+          if(this.$route.query.channel_id){
+              this.$router.push({
+                  path:'/fmpage',
+                  query:{
+                      channel_id: this.$route.query.channel_id
+                  }
+              })
+          }else{
+              this.$router.push({
+                  path: '/home',
+                  query: {
+                      channel_id: this.$route.query.channel_id
+                  }
+              })
+          }
+      }
   }
 }
 </script>
