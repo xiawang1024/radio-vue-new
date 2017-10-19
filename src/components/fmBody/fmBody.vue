@@ -27,7 +27,7 @@
                             <swiper :options="columnSwiper" ref="columnSwiper">
                                 <!-- slides -->
                                 <swiper-slide v-for="item in columnList" v-bind:key="item.icon_url">
-                                    <div class="img-wrap">
+                                    <div class="img-wrap" @click="goToList(item.id,item.name)">
                                         <img :src=" item.icon_url" alt="" class="img">
                                         <p class="name">{{item.name}}</p>
                                     </div>
@@ -44,7 +44,7 @@
                         <swiper :options="podcastSwiper" ref="podcastSwiper">
                             <!-- slides -->
                             <swiper-slide v-for="n in 10" v-bind:key="n">
-                                <div class="img-wrap">
+                                <div class="img-wrap" @click="goToList()">
                                     <img src="http://www.hndt.com/podcast/1041/1021/res/it7e3U4V.jpg?1505469628026" alt="" class="img">
                                     <p class="name">南方谈交通</p>
                                 </div>
@@ -62,7 +62,7 @@
                 <swiper :options="radioHostSwiper" ref="radioSwiper">
                     <!-- slides -->
                     <swiper-slide v-for="item in hostList" v-bind:key="item.url">
-                        <div class="img-wrap">
+                        <div class="img-wrap" @click="goToHostArticle(item.id)">
                             <img :src="'http://www.hndt.com' + item.cover" alt="" class="img">
                             <p class="name">{{item.name}}</p>
                         </div>
@@ -122,6 +122,25 @@ export default {
                 query:{
                     channel_id,
                     article_id
+                }
+            })
+        },
+        goToHostArticle(fragment_id,channel_id) {
+            this.$router.push({
+                path:'/hostinner',
+                query:{
+                    channel_id:this.$route.query.channel_id,
+                    fragment_id
+                }
+            })
+        },
+        goToList(column_id, column_name) {
+            this.$router.push({
+                path: '/list',
+                query: {
+                    column_id,
+                    column_name,
+                    channel_id:this.$route.query.channel_id
                 }
             })
         }

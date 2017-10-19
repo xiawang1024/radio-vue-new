@@ -5,6 +5,7 @@ import Player from 'pages/player/player'
 import Fmpage from 'pages/fmpage/fmpage'
 import ColumnList from 'pages/columnlist/columnlist'
 import Inner from 'pages/inner/inner'
+import HostInner from 'pages/hostInner/hostInner'
 import List from 'pages/list/list'
 
 Vue.use(Router)
@@ -38,6 +39,11 @@ export default new Router({
             path: '/inner',
             name: 'inner',
             component: Inner
+        },
+        {
+            path: '/hostinner',
+            name: 'hostinner',
+            component: HostInner
         },
         {
             path: '/list',

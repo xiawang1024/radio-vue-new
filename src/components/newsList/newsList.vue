@@ -76,25 +76,7 @@ export default {
         })
     },
     methods:{
-        // goToArticle(href) {
-        //     setTimeout(() => {
-        //         document.getElementById('audio').pause()
-        //     }, 20)
-        //     layer.open({
-        //         type: 2,
-        //         title: ['河南广播网', 'font-size:16px'],
-        //         area: ['100%', '100%'],
-        //         anim: 5,
-        //         content: [href],
-        //         success: function() {
-        //         },
-        //         end: function() {
-        //             setTimeout(() => {
-        //                 document.getElementById('audio').play()
-        //             }, 20)
-        //         }
-        //     })
-        // }
+        
         goToArticle(article_id) {
             this.$router.push({
                 path: '/inner',

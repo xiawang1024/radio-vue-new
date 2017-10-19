@@ -28,10 +28,10 @@ export default {
     },
     data() {
         return {
-            channel_id:903,
-            article_id:1910967,
+            // channel_id:903,
+            // article_id:1910967,
             videoObj:{},
-            articleObj:{}
+            articleObj:{},
         }
     },
     created() {
@@ -41,32 +41,16 @@ export default {
             getChannelVideo(this.channel_id).then((res) => {
                 this.videoObj = res.data
             })
-        }
+        }       
         getArticle(this.article_id).then((res) => {
             this.articleObj = res.data
             this.$nextTick(() => {
-               
+                
             })
         })
-        
     },
     methods:{
-        // _initIframe() {
-        //     window.onload = () => {
-        //         let iframe = document.getElementsByTagName('iframe')[0];
-        //         // iframe.parentNode.style.textIndent=0
-        //         alert(1)
-        //         iframe.style.width = '600px'
-        //         // iframe.style.width = 'margin:0 auto'
-        //         let patt = /width=(.+)&height=(.+)&/g
-        //         let options = 'width=600&height=auto&'
-        //         let _src = iframe.attr("src").replace(patt, options)
-        //         console.log('------------------------------------');
-        //         console.log(iframe);
-        //         console.log('------------------------------------');
-                
-        //     }
-        // }
+        
     }
 }
 </script>

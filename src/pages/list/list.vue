@@ -48,7 +48,8 @@ export default {
               query: {
                   article_id,
                   column_id:this.$route.query.column_id,
-                  column_name:this.$route.query.column_name
+                  column_name:this.$route.query.column_name,
+                  channel_id:this.$route.query.channel_id
               }
           })
       },
@@ -79,8 +80,8 @@ export default {
     .hd
         position relative
         width 100%
-        height 160px
-        line-height 160px
+        height 252px
+        line-height 252px
         text-align center
         .back-icon
             position absolute
@@ -88,12 +89,12 @@ export default {
             vertical-align middle
             display inline-block
             width 68px
-            height 160px
+            height 252px
             background url('./back-icon.png') left center no-repeat
             background-size 34px 60px
         .title
             vertical-align middle
-            font-size 50px
+            font-size 60px
             color #0081dc
     .list-wrap
         width 100%
