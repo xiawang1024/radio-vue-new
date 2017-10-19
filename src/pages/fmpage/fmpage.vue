@@ -1,14 +1,14 @@
 <template>
     <div class="fmpage">
         <fm-header :videoObj="videoObj"></fm-header>
-        <fm-body :newsList="newsList" :hostList="hostList" :columnList="columnList"></fm-body>
+        <fm-body :newsList="newsList" :hostList="hostList" :columnList="columnList" :podcastList="podcastList"></fm-body>
     </div>
 </template>
 
 <script>
 import FmHeader from 'components/fmHeader/fmHeader'
 import FmBody from 'components/fmBody/fmBody'
-import { getChannelVideo, getChannelNews, getChannelHost, getChannelColumn } from 'api/index'
+import { getChannelVideo, getChannelNews, getChannelHost, getChannelColumn, getPodcast } from 'api/index'
 import axios from 'axios'
 
 export default {
@@ -23,7 +23,8 @@ export default {
           videoObj:{},
           newsList:[],
           columnList:[],
-          hostList:[]
+          hostList:[],
+          podcastList:[]
       }
   },
   created() {
@@ -38,7 +39,14 @@ export default {
           this.columnList = res.data.list
       })
       getChannelHost(this.channel_id).then((res) => {
-          this.hostList = res.data.list
+          this.hostList = res.data.list.filter((item) => {
+              return Object.keys(item).length !== 0;
+          })
+      })
+      getPodcast(this.channel_id).then((res) => {
+          this.podcastList = res.data.list.filter((item) => {
+              return Object.keys(item).length !== 0;
+          })
       })
   }
 }
