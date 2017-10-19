@@ -40,7 +40,7 @@ export default {
   },
   methods:{
       goBackHome() {
-          if(this.isInner && this.$route.query.channel_id) {
+          if(this.isInner && this.$route.query.channel_id && !this.$route.query.column_id) {
               this.$router.push({
                   path: '/fmpage',
                   query:{
@@ -52,7 +52,8 @@ export default {
                   path: '/list',
                   query:{
                       column_id:this.$route.query.column_id,
-                      column_name:this.$route.query.column_name
+                      column_name:this.$route.query.column_name,
+                      channel_id:this.$route.query.channel_id
                   }
               })
           }else{
