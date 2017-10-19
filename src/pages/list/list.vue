@@ -76,7 +76,8 @@ export default {
 
 <style lang="stylus" scoped>
 .news-list
-    min-height 1920px
+    position relative
+    min-height 100%
     .hd
         position relative
         width 100%

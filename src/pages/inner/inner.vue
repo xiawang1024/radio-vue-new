@@ -57,9 +57,11 @@ export default {
 
 <style lang="stylus" scoped>
 .inner
-    min-height 1920px
+    position relative
+    min-height 100%
     .body
         margin-top 60px
+        min-height 100%
         .title
             line-height 1.8
             font-size 50px
