@@ -13,8 +13,18 @@ Vue.config.productionTip = false
 
 router.beforeEach((to, from, next) => {
     console.log('------------------------------------');
-    console.log(to);
+    console.log(to.path);
     console.log('------------------------------------');
+    let audio = document.getElementById('audio')
+    if (audio) {
+        if (to.path == '/home' || to.path == '/player') {
+            if (audio.paused) {
+                audio.play()
+            }
+        } else {
+            audio.pause()
+        }
+    }
     next()
 })
 
