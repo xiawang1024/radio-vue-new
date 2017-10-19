@@ -41,14 +41,24 @@
                 <div class="podcast-wrap">
                     <h2 class="title">音频播客</h2>
                     <div class="slider">
-                        <swiper :options="podcastSwiper" ref="podcastSwiper">
+                        <swiper :options="podcastSwiper" ref="podcastSwiper" v-if="podcastList.length > 0">
                             <!-- slides -->
-                            <swiper-slide v-for="n in 10" v-bind:key="n">
+                            <swiper-slide v-for="(item,index) in podcastList" v-bind:key="index" >
                                 <div class="img-wrap" @click="goToList()">
-                                    <img src="http://www.hndt.com/podcast/1041/1021/res/it7e3U4V.jpg?1505469628026" alt="" class="img">
-                                    <p class="name">南方谈交通</p>
+                                    <img :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
+                                    <p class="name">{{item.name}}</p>
+                                </div>
+                            </swiper-slide>                            
+                        </swiper>
+                        <swiper :options="podcastSwiper" ref="podcastSwiper" v-else>
+                            <!-- slides -->
+                            <swiper-slide >
+                                <div class="img-wrap">
+                                    <img src="./no-open.png" alt="" class="img">
+                                    <p class="name"></p>
                                 </div>
                             </swiper-slide>
+                        
                         </swiper>
                         <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
@@ -97,6 +107,12 @@ export default {
             }
         },
         columnList:{
+            type: Array,
+            default: () => {
+                return []
+            }
+        },
+        podcastList:{
             type: Array,
             default: () => {
                 return []
