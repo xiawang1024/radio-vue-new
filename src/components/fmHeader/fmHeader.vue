@@ -2,10 +2,12 @@
   <div class="fmheader">
       <div class="back-logo">
           <span class="back" @click="goBackHome"></span>
-          <img v-if="channel_id > 0" :src="videoObj.icon_url" alt="" class="logo">
+          <img v-if="videoObj.icon_url" :src="videoObj.icon_url" alt="" class="logo">
+          <h2 v-else-if="column_name" class="title">{{column_name}}</h2>
+          <img v-else src="./logo-icon.png" alt="" class="logo">
       </div>
       <div class="video-wrap" :class="isInner ? 'isInner' : ''" v-if="channel_id > 0"> 
-          <video class="video" :src="videoObj.video_url" controls autoplay preload="load"></video>
+          <video id="video" class="video" :src="videoObj.video_url" controls autoplay preload="load" loop></video>
       </div>
   </div>
 </template>
@@ -28,11 +30,13 @@ export default {
   },
   data() {
       return {
-          channel_id:-1
+          channel_id:-1,
+          column_name:''
       }
   },
   created() {
       this.channel_id = this.$route.query.channel_id
+      this.column_name = this.$route.query.column_name
   },
   methods:{
       goBackHome() {
@@ -84,6 +88,9 @@ export default {
             vertical-align middle
             display inline-block
             height 120px
+        .title
+            font-size 60px
+            color #0081dc
     .video-wrap
         width 100%
         height 550px
