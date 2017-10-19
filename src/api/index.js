@@ -70,6 +70,12 @@ const getColumnList = (column_id) => axios.get('http://api.hndt.com/api/page?tem
  */
 const getArticle = (article_id) => axios.get('http://api.hndt.com/api/page?template_id=210&article_id=' + article_id)
 
+/**
+ * 频率页面获取音频播客
+ * @param {Number} channel_id 频率id
+ */
+const getPodcast = (channel_id) => axios.get('http://api.hndt.com/api/page?template_id=208&channel_id=' + channel_id)
+
 export {
     getLiveItem,
     getClassItem,
@@ -83,5 +89,6 @@ export {
     getHostArticle,
     getChannelColumn,
     getColumnList,
-    getArticle
+    getArticle,
+    getPodcast
 }
