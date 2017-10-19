@@ -11,6 +11,13 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+    console.log('------------------------------------');
+    console.log(to);
+    console.log('------------------------------------');
+    next()
+})
+
 /* eslint-disable no-new */
 new Vue({
     el: '#app',
