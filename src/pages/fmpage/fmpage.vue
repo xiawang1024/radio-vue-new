@@ -44,9 +44,19 @@ export default {
           })
       })
       getPodcast(this.channel_id).then((res) => {
-          this.podcastList = res.data.list.filter((item) => {
-              return Object.keys(item).length !== 0;
-          })
+        
+        this.podcastList = res.data.list.filter((item) => {
+            return Object.keys(item).length !== 0;
+        })
+        if(this.podcastList.length == 0 ){
+            this.podcastList.push({
+                icon_url:'no-open',
+                name:'暂未开通播客'
+            })
+        }
+          console.log('------------------------------------');
+          console.log(this.podcastList);
+          console.log('------------------------------------');      
       })
   }
 }

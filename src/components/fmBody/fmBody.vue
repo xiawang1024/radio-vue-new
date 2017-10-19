@@ -41,17 +41,17 @@
                 <div class="podcast-wrap">
                     <h2 class="title">音频播客</h2>
                     <div class="slider">
-                        <swiper :options="podcastSwiper" ref="podcastSwiper" v-if="podcastList.length > 0">
+                        <swiper :options="podcastSwiper" ref="podcastSwiper">
                             <!-- slides -->
                             <swiper-slide v-for="(item,index) in podcastList" v-bind:key="index" >
                                 <div class="img-wrap" @click="goToList()">
-                                    <img :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
+                                    <img v-if="item.icon_url == 'no-open'" src="./no-open.png" alt="" class="img">
+                                    <img v-else :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
                                     <p class="name">{{item.name}}</p>
                                 </div>
                             </swiper-slide>                            
                         </swiper>
-                        <swiper :options="podcastSwiper" ref="podcastSwiper" v-else>
-                            <!-- slides -->
+                        <!-- <swiper :options="podcastSwiper" ref="podcastSwiper" v-else>
                             <swiper-slide >
                                 <div class="img-wrap">
                                     <img src="./no-open.png" alt="" class="img">
@@ -59,7 +59,7 @@
                                 </div>
                             </swiper-slide>
                         
-                        </swiper>
+                        </swiper> -->
                         <div class="swiper-button-prev" slot="button-prev"></div>
                         <div class="swiper-button-next" slot="button-next"></div>
                     </div>
