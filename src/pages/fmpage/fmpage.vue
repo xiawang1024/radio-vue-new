@@ -31,17 +31,21 @@ export default {
       this.channel_id = this.$route.query.channel_id
       getChannelVideo(this.channel_id).then((res) => {
           this.videoObj = res.data
+          this.$nextTick(() => {})
       })
       getChannelNews(this.channel_id).then((res)=>{
           this.newsList = res.data.list
+          this.$nextTick(() => {})
       })
       getChannelColumn(this.channel_id).then((res) => {
           this.columnList = res.data.list
+          this.$nextTick(() => {})
       })
       getChannelHost(this.channel_id).then((res) => {
           this.hostList = res.data.list.filter((item) => {
               return Object.keys(item).length !== 0;
           })
+          this.$nextTick(() => {})
       })
       getPodcast(this.channel_id).then((res) => {
         
@@ -54,9 +58,7 @@ export default {
                 name:'暂未开通播客'
             })
         }
-          console.log('------------------------------------');
-          console.log(this.podcastList);
-          console.log('------------------------------------');      
+        this.$nextTick(() => {})
       })
   }
 }

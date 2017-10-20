@@ -6,6 +6,7 @@ import Fmpage from 'pages/fmpage/fmpage'
 import Inner from 'pages/inner/inner'
 import HostInner from 'pages/hostInner/hostInner'
 import List from 'pages/list/list'
+import Podcast from 'pages/podcast/podcast'
 
 Vue.use(Router)
 
@@ -43,6 +44,11 @@ export default new Router({
             path: '/list',
             name: 'list',
             component: List
+        },
+        {
+            path: '/podcast',
+            name: 'podcast',
+            component: Podcast
         }
     ]
 })

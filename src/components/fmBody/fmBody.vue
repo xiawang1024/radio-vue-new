@@ -42,9 +42,8 @@
                     <h2 class="title">音频播客</h2>
                     <div class="slider">
                         <swiper :options="podcastSwiper" ref="podcastSwiper">
-                            <!-- slides -->
                             <swiper-slide v-for="(item,index) in podcastList" v-bind:key="index" >
-                                <div class="img-wrap" @click="goToList()">
+                                <div class="img-wrap" @click="goToPodcastList(item.id)">
                                     <img v-if="item.icon_url == 'no-open'" src="./no-open.png" alt="" class="img">
                                     <img v-else :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
                                     <p class="name">{{item.name}}</p>
@@ -157,6 +156,15 @@ export default {
                     column_id,
                     column_name,
                     channel_id:this.$route.query.channel_id
+                }
+            })
+        },
+        goToPodcastList(podcast_id) {
+            this.$router.push({
+                path:'/podcast',
+                query:{
+                    channel_id:this.$route.query.channel_id,
+                    podcast_id
                 }
             })
         }

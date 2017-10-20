@@ -76,6 +76,12 @@ const getArticle = (article_id) => axios.get('http://api.hndt.com/api/page?templ
  */
 const getPodcast = (channel_id) => axios.get('http://api.hndt.com/api/page?template_id=208&channel_id=' + channel_id)
 
+/**
+ * 获取音频播客列表
+ * @param {Number} podcast_id 音频播客id
+ */
+const getPodcastList = (podcast_id) => axios.get('http://api.hndt.com/api/page?template_id=211&channel_id=' + podcast_id)
+
 export {
     getLiveItem,
     getClassItem,
@@ -90,5 +96,6 @@ export {
     getChannelColumn,
     getColumnList,
     getArticle,
-    getPodcast
+    getPodcast,
+    getPodcastList
 }
