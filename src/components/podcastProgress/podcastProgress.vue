@@ -1,5 +1,6 @@
 <template>
     <div class="podcast-progress">
+        <h3 class="title">{{title}}</h3>
         <vue-slider 
             @callback="cb"
             v-bind="progress" 
@@ -32,6 +33,10 @@ export default {
         duration: {
             type: Number,
             default: 0
+        },
+        title:{
+            type:String,
+            default:''
         }
     },    
     data() {
@@ -82,16 +87,21 @@ export default {
 <style lang="stylus" scoped>
 .podcast-progress
     position relative
-    margin-top 10px 
+    // margin-top 10px 
+    .title
+        height 26px
+        margin-bottom 10px
+        font-size 26px
+        color #0081dc
     .current-time
         position absolute
         left 0
-        font-size 26px
+        font-size 24px
         color #7c8997
     .duration
         position absolute
         right 0
-        font-size 26px
+        font-size 24px
         color #7c8997
     .islive
         color #7c8997
