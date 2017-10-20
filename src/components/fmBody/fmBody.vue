@@ -42,8 +42,8 @@
                     <h2 class="title">音频播客</h2>
                     <div class="slider">
                         <swiper :options="podcastSwiper" ref="podcastSwiper">
-                            <swiper-slide v-for="(item,index) in podcastList" v-bind:key="index" >
-                                <div class="img-wrap" @click="goToPodcastList(item.id)">
+                            <swiper-slide v-for="(item,index) in podcastList" v-bind:key="index" @click.native="goToPodcastList(item.id, item.name)">
+                                <div class="img-wrap" >
                                     <img v-if="item.icon_url == 'no-open'" src="./no-open.png" alt="" class="img">
                                     <img v-else :src="'http://www.hndt.com' + item.icon_url" alt="" class="img">
                                     <p class="name">{{item.name}}</p>
@@ -70,8 +70,8 @@
             <div class="slider">
                 <swiper :options="radioHostSwiper" ref="radioSwiper">
                     <!-- slides -->
-                    <swiper-slide v-for="item in hostList" v-bind:key="item.url">
-                        <div class="img-wrap" @click="goToHostArticle(item.id)">
+                    <swiper-slide v-for="item in hostList" v-bind:key="item.url" @click.native="goToHostArticle(item.id)">
+                        <div class="img-wrap" >
                             <img :src="'http://www.hndt.com' + item.cover" alt="" class="img">
                             <p class="name">{{item.name}}</p>
                         </div>
@@ -159,12 +159,13 @@ export default {
                 }
             })
         },
-        goToPodcastList(podcast_id) {
+        goToPodcastList(podcast_id, podcast_name) {
             this.$router.push({
                 path:'/podcast',
                 query:{
                     channel_id:this.$route.query.channel_id,
-                    podcast_id
+                    podcast_id,
+                    podcast_name
                 }
             })
         }
@@ -176,14 +177,14 @@ export default {
                 // autoplay: 4000,
                 slidesPerView: 1,
                 height: 140,
-                loop: true,
+                // loop: true,
                 setWrapperSize: true,
                 prevButton: '.column-wrap .swiper-button-prev',
                 nextButton: '.column-wrap .swiper-button-next',
                 observeParents: true 
             },
             podcastSwiper: {
-                loop: true,
+                // loop: true,
                 // autoplay: 4000,
                 setWrapperSize: true,
                 prevButton: '.podcast-wrap .swiper-button-prev',
@@ -191,7 +192,7 @@ export default {
                 observeParents: true                
             },
             radioHostSwiper: {
-                loop:true,
+                // loop:true,
                 autoplay: 3500,
                 setWrapperSize: true,
                 prevButton: '.radio-host .swiper-button-prev',
@@ -199,7 +200,8 @@ export default {
                 observeParents: true,
                 slidesPerView: 4,
                 slidesPerGroup: 1,
-                spaceBetween:43
+                spaceBetween:43,
+                autoplayDisableOnInteraction:false
             },
         }
     }
