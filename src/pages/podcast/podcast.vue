@@ -1,9 +1,9 @@
 <template>
   <div class="podcast">
-      <audio src="http://www.hndt.com/podcast/1041/1020/201709/29/1908658/res/rA0mLLcb.mp3" id="podcastAudio" loop style="display:none"></audio>
+      <audio :src="audioSrc" id="podcastAudio" loop style="display:none"></audio>
       <div class="hd">
           <span class="back-icon" @click="goBack"></span>
-          <span class="title">音频播客</span>
+          <span class="title">{{podcastName}}</span>
       </div>
       <div class="player-wrap">
             <div 
@@ -16,7 +16,8 @@
                     @percentChange="onPercentChange"
                     :currentTime="currentTime"
                     :duration="duration"
-                    :percent="percent">
+                    :percent="percent"
+                    :title="title">
                 </podcast-progress>
             </div>
             <div class="volume">
@@ -27,8 +28,12 @@
             </div>
       </div>
       <div class="list-wrap">
-          <div class="item" v-for="(item, index) of podcastList" v-bind:key="index">
-              {{item.title}}
+          <div v-if="podcastList.length > 0" class="item" v-for="(item, index) of podcastList" v-bind:key="index" :class="currentIndex == index ? 'isPlay' : ''" @click="setPlaySrc(index, item.file_url, item.title)">
+              <span class="icon">
+
+              </span>
+              <span class="title">{{item.title}}</span>
+              <span class="time">{{item.time}}</span>
           </div>
       </div>
       <player-footer></player-footer>
@@ -49,8 +54,12 @@ export default {
     },
     data() {
         return {
+            podcastName:'',
             podcastList:[],
             isPlay:false,
+            title:'',
+            currentIndex:-1,
+            audioSrc:'',
             currentTime:0,
             duration:0,
             volume:0
@@ -62,7 +71,11 @@ export default {
         }
     },
     created() {
+        this.podcastName = this.$route.query.podcast_name
         getPodcastList(this.$route.query.podcast_id).then((res) => {
+            if(res.data.list.length == 0) {
+
+            }
             this.podcastList = res.data.list
             this.$nextTick(() => {
 
@@ -70,14 +83,25 @@ export default {
         })
     },
     mounted() {
-        this.audio = document.getElementById('podcastAudio');
+        this.podcastAudio = document.getElementById('podcastAudio');
         this.watchPlayPercent()
         setTimeout(() => {
-            this.volume = this.audio.volume
+            this.volume = this.podcastAudio.volume
         },20)                    
     },
     methods:{
-        goBack(){
+        setPlaySrc(index, src, title) {
+            this.currentIndex = index;
+            this.title = title
+            console.log('------------------------------------');
+            console.log(title);
+            console.log('------------------------------------');
+            this.audioSrc = 'http://www.hndt.com' + src
+            setTimeout(() => {
+                this._audioPlay()
+            },20)
+        },
+        goBack() {
             this.$router.push({
                 path:'/fmpage',
                 query:{
@@ -86,7 +110,7 @@ export default {
             })
         },
         play() {
-            if(this.audio.paused){
+            if(this.podcastAudio.paused){
                 this._audioPlay()
             }else{
                 this._audioPause()
@@ -94,22 +118,22 @@ export default {
             // this.$emit('play', this.isPlay)
         },
         _audioPlay() {
-            this.audio.play()
+            this.podcastAudio.play()
             this.isPlay = true
         },
         _audioPause() {
-            this.audio.pause()
+            this.podcastAudio.pause()
             this.isPlay = false
         },
         onPercentChange(percent) {
-            this.audio.currentTime = this.duration * percent
+            this.podcastAudio.currentTime = this.duration * percent
         },
         onVolumeChange(volume) {
-            this.audio.volume = volume
+            this.podcastAudio.volume = volume
         },
         //监听播放信息
         watchPlayPercent() {
-            this.audio.addEventListener('timeupdate', (e) => {
+            this.podcastAudio.addEventListener('timeupdate', (e) => {
                 this.currentTime = e.target.currentTime;
                 this.duration = e.target.duration;
             })  
@@ -158,9 +182,35 @@ export default {
                 background-size cover
         .progress
             width 550px
+            height 115px
         .volume
             position relative
             width 115px
             height 115px
+    .list-wrap
+        width 100%
+        margin-top 60px
+        overflow hidden
+        .item
+            display flex
+            padding 30px
+            font-size 26px
+            color #888
+            border-bottom 1px solid #000
+            align-items center
+            &.isPlay
+                color #0081dc
+                .icon
+                    background url('./isLive.png') left center no-repeat
+                    background-size 30px 30px
+            .icon
+                display inline-block
+                width 40px
+                height 30px
+                background url('./noLive.png') left center no-repeat
+                background-size 30px 30px
+            .title  
+                flex 1
+            
 </style>
 
