@@ -27,8 +27,8 @@
                 </volume-bar>
             </div>
       </div>
-      <div class="list-wrap">
-          <div v-if="podcastList.length > 0" class="item" v-for="(item, index) of podcastList" v-bind:key="index" :class="currentIndex == index ? 'isPlay' : ''" @click="setPlaySrc(index, item.file_url, item.title)">
+      <div class="list-wrap" v-if="podcastList && podcastList.length > 0">
+          <div class="item" v-for="(item, index) of podcastList" v-bind:key="index" :class="currentIndex == index ? 'isPlay' : ''" @click="setPlaySrc(index, item.file_url, item.title)">
               <span class="icon">
 
               </span>
@@ -169,7 +169,7 @@ export default {
     .player-wrap
         display flex
         width 100%
-        overflow hidden
+        // overflow hidden
         justify-content space-between
         align-items center
         .play-pause
